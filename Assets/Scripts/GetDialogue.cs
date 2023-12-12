@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class GetDialogue : MonoBehaviour
 {
-    [SerializeField] string eventName;
+    SceneManager sceneManager;
     [SerializeField] TextMeshProUGUI text;
     List<string> contextList = new List<string>();
     public void GetDialogue_(string _EventName)
@@ -38,7 +39,22 @@ public class GetDialogue : MonoBehaviour
 
     private void Start()
     {
-        GetDialogue_(eventName);
+        GetDialogue_(FindAnyObjectByType<SceneManager>().eventName);
+        StartCoroutine("Typing");
+    }
+
+    IEnumerator Typing()
+    {
         text.text = contextList[0];
+        TMPText(text, 1f);
+
+        yield return new WaitForSeconds(1.5f);
+        
+    }
+
+    public void TMPText(TextMeshProUGUI text, float duration)
+    {
+        text.maxVisibleCharacters = 0;
+        DOTween.To(x=> text.maxVisibleCharacters = (int)x,0f,text.text.Length,duration);
     }
 }
