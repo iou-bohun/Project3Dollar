@@ -62,6 +62,7 @@ public class Inventory : MonoBehaviour
         }*/
     }
 
+    // 아이템 추가 메소드
     public void Add(ItemData itemData)
     {
         int index;
@@ -76,16 +77,41 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void Remove(int index)
+    {
+        _items[index] = null;
+        _inventoryUI.RemoveItem(index);
+    }
+
+    // InventoryUI와 연결
     public void ConnectUI(InventoryUI inventoryUI)
     {
         _inventoryUI = inventoryUI;
         _inventoryUI.SetInventoryReference(this);
     }
 
+    // Item array에서 ItemData 가져오기 
     public ItemData GetItemData(int index)
     {
         if (_items[index] == null) return null;
 
         return _items[index].Data;
     }
+
+    // Test
+    #region
+    public void AddRandomItem()
+    {
+        int idx = Random.Range(0, itemDatas.Length);
+        var data = itemDatas[idx];
+
+        Add(data);
+    }
+
+    public void RemoveRandomItem()
+    {
+        int idx = Random.Range(0, 20);
+        Remove(idx);
+    }
+    #endregion
 }

@@ -14,6 +14,8 @@ public class InventoryUI : MonoBehaviour
     private Inventory _inventory;
     [SerializeField]
     private ItemDescriptionUI _itemDescription;
+    [SerializeField]
+    private OptionPopupUI _optionPopupUI;
 
 
     private GraphicRaycaster _gr;
@@ -65,7 +67,8 @@ public class InventoryUI : MonoBehaviour
     {
         _ped.position = Input.mousePosition;
 
-        OnPointerDown();
+        OnLeftClick();
+        OnRightClick();
     }
     
     private T RaycastAndGetFirstComponent<T>() where T : Component
@@ -80,18 +83,40 @@ public class InventoryUI : MonoBehaviour
         return _rrList[0].gameObject.GetComponent<T>();
     }
 
-    private void OnPointerDown()
+    private void OnLeftClick()
     {
         if (Input.GetMouseButtonDown(0))
         {
             selectedSlot = RaycastAndGetFirstComponent<SlotUI>();
+
+            Debug.Log(selectedSlot.Index);
             Debug.Log(selectedSlot.gameObject.name);
-            if(selectedSlot != null && selectedSlot.HasItem)
+
+            if (selectedSlot != null && selectedSlot.HasItem)
             {
                 
                 var data = _inventory.GetItemData(selectedSlot.Index);
                 _itemDescription.SetDescriptiponText(data.Description);
             }
+        }
+    }
+
+    private void OnRightClick()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            selectedSlot = RaycastAndGetFirstComponent<SlotUI>();
+
+            if (selectedSlot != null && selectedSlot.HasItem)
+            {
+                _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
+                _optionPopupUI.Show();
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            _optionPopupUI.Hide();
         }
     }
 
@@ -103,5 +128,10 @@ public class InventoryUI : MonoBehaviour
     public void SetItemIcon(int index, Sprite icon)
     {
         slots[index].SetItem(icon);
+    }
+
+    public void RemoveItem(int index)
+    {
+        slots[index].RemoveItem();
     }
 }
