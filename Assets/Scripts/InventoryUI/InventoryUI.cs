@@ -23,6 +23,7 @@ public class InventoryUI : MonoBehaviour
     private List<RaycastResult> _rrList;
 
     private SlotUI selectedSlot;
+    private OptionPopupUI optionPopupUI;
 
 
 #if UNITY_EDITOR
@@ -66,9 +67,9 @@ public class InventoryUI : MonoBehaviour
     void Update()
     {
         _ped.position = Input.mousePosition;
-
-        OnLeftClick();
         OnRightClick();
+        OnLeftClick();
+        
     }
     
     private T RaycastAndGetFirstComponent<T>() where T : Component
@@ -89,12 +90,8 @@ public class InventoryUI : MonoBehaviour
         {
             selectedSlot = RaycastAndGetFirstComponent<SlotUI>();
 
-            Debug.Log(selectedSlot.Index);
-            Debug.Log(selectedSlot.gameObject.name);
-
             if (selectedSlot != null && selectedSlot.HasItem)
             {
-                
                 var data = _inventory.GetItemData(selectedSlot.Index);
                 _itemDescription.SetDescriptiponText(data.Description);
             }
@@ -110,14 +107,12 @@ public class InventoryUI : MonoBehaviour
             if (selectedSlot != null && selectedSlot.HasItem)
             {
                 _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
+                _optionPopupUI.SetIndex(selectedSlot.Index);
                 _optionPopupUI.Show();
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            _optionPopupUI.Hide();
-        }
+
     }
 
     public void SetInventoryReference(Inventory invetory)
