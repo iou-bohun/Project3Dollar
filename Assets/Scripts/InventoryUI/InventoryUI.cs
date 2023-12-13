@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,12 @@ public class InventoryUI : MonoBehaviour
     private ItemDescriptionUI _itemDescription;
     [SerializeField]
     private OptionPopupUI _optionPopupUI;
+    [SerializeField]
+    private PlayerEquipmentUI _playerEquipmentUI;
+    [SerializeField]
+    private Button _equipButton;
+    [SerializeField]
+    private Button _removeButton;
 
 
     private GraphicRaycaster _gr;
@@ -24,6 +31,8 @@ public class InventoryUI : MonoBehaviour
 
     private SlotUI selectedSlot;
     private OptionPopupUI optionPopupUI;
+
+    private int selectedOptionPopupIndex;
 
 
 #if UNITY_EDITOR
@@ -60,7 +69,11 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        var equipButton = _equipButton.GetComponent<Button>();
+        var removeButton = _removeButton.GetComponent<Button>();
+
+        removeButton.onClick.AddListener(RemoveItemFromSlot);
+        equipButton.onClick.AddListener(EquipItemFromSlot);
     }
 
     // Update is called once per frame
@@ -107,12 +120,29 @@ public class InventoryUI : MonoBehaviour
             if (selectedSlot != null && selectedSlot.HasItem)
             {
                 _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
-                _optionPopupUI.SetIndex(selectedSlot.Index);
+                //_optionPopupUI.SetIndex(selectedSlot.Index);
+                selectedOptionPopupIndex = selectedSlot.Index;
                 _optionPopupUI.Show();
             }
         }
 
 
+    }
+
+    private void EquipItemFromSlot()
+    {
+        var item = _inventory.GetItem(selectedOptionPopupIndex);
+        if(item != null) 
+        {
+            Debug.Log(item.Data.name);
+            _playerEquipmentUI.Equip(item);
+        }
+        _optionPopupUI.Hide();
+    }
+    public void RemoveItemFromSlot()
+    {
+        _inventory.Remove(selectedOptionPopupIndex);
+        _optionPopupUI.Hide();
     }
 
     public void SetInventoryReference(Inventory invetory)

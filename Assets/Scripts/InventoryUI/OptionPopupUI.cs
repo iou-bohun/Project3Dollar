@@ -31,11 +31,6 @@ public class OptionPopupUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     // Start is called before the first frame update
     void Start()
     {
-        var equipButton = _equipButton.GetComponent<Button>();
-        var removeButton = _removeButton.GetComponent<Button>();
-
-        removeButton.onClick.AddListener(RemoveItemFromSlot);
-        equipButton.onClick.AddListener(EquipItemFromSlot);
     }
 
     // Update is called once per frame
@@ -58,18 +53,6 @@ public class OptionPopupUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void Hide() => gameObject.SetActive(false);
 
-
-    private void EquipItemFromSlot()
-    {
-        var data = _inventory.GetItemData(Index);
-        Debug.Log(data.name);
-        Hide();
-    }
-    public void RemoveItemFromSlot()
-    {
-        _inventory.Remove(Index);
-        Hide();
-    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {

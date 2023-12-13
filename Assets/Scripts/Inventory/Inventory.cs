@@ -109,6 +109,13 @@ public class Inventory : MonoBehaviour
         return _items[index].Data;
     }
 
+    public Item GetItem(int index)
+    {
+        if (_items[index] == null) return null;
+
+        return _items[index];
+    }
+
 
 
     // Test
