@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Item_Weapon : Item_EquipmentItem
 {
-    [SerializeField]
-    private List<Item> _gems;
+    public List<Item_Gem> _gems;
 
-    public Item_Weapon(ItemData_Weapon data) : base(data) { }
+    public Item_Weapon(ItemData_Weapon data) : base(data) { 
+        _gems = new List<Item_Gem>();
+    }
 
-    public void AddGem(Item gem)
+    public void AddGem(Item item)
     {
-        if (_gems.Count < this.EquipmentItemData.Tier)
+        var data = this.Data as ItemData_Weapon;
+        Debug.Log(data.Tier);
+        if (_gems.Count < data.Tier)
         {
+            var gem = item as Item_Gem;
             _gems.Add(gem);
         }
     }

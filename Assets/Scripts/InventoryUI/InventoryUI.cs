@@ -136,6 +136,7 @@ public class InventoryUI : MonoBehaviour
         {
             Debug.Log(item.Data.name);
             _playerEquipmentUI.Equip(item);
+            RemoveItemFromSlot();
         }
         _optionPopupUI.Hide();
     }

@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerEquipment : MonoBehaviour
 {
     [SerializeField]
-    private Item myWeapon;
+    private Item_Weapon myWeapon;
 
     [SerializeField]
     private Item myCharm;
 
+    private void Awake()
+    {
+        myWeapon = null;
+        myCharm = null;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +27,11 @@ public class PlayerEquipment : MonoBehaviour
         
     }
 
-    public Item getMyWeapon() => myWeapon;
+    public Item_Weapon getMyWeapon() => myWeapon;
 
     public Item getCharm() => myCharm;
 
-    public void setMyWeapon(Item weapon) => myWeapon = weapon;
+    public void setMyWeapon(Item weapon) => myWeapon = weapon as Item_Weapon;
 
     public void setMyCharm(Item charm) => myCharm = charm;
 
