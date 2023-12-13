@@ -47,7 +47,10 @@ public class Inventory : MonoBehaviour
 
         Item item = _items[index];
 
-        _inventoryUI.SetItemIcon(index, item.Data.Icon);
+        if(item != null)
+        {
+            _inventoryUI.SetItemIcon(index, item.Data.Icon);
+        }
         /*// 2. 빈 슬롯인 경우 : 아이콘 제거
         else
         {
@@ -60,6 +63,14 @@ public class Inventory : MonoBehaviour
             _inventoryUI.RemoveItem(index);
             _inventoryUI.HideItemAmountText(index); // 수량 텍스트 숨기기
         }*/
+    }
+
+    private void UpdateAllSlot()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            UpdateSlot(i);
+        }
     }
 
     // 아이템 추가 메소드
@@ -97,6 +108,8 @@ public class Inventory : MonoBehaviour
 
         return _items[index].Data;
     }
+
+
 
     // Test
     #region
