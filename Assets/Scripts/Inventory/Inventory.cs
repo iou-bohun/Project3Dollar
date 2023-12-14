@@ -88,6 +88,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void Add(Item item, int index)
+    {
+        _items[index] = item;
+        UpdateSlot(index);
+    }
+
     public void Remove(int index)
     {
         _items[index] = null;

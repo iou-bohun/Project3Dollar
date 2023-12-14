@@ -21,9 +21,13 @@ public class Item_Weapon : Item_EquipmentItem
             var gem = item as Item_Gem;
             _gems.Add(gem);
         }
+        else
+        {
+            Debug.Log("무기의 남은 잼 장착 공간이 없습니다.");
+        }
     }
 
-    public Item Remove(int index)
+    public Item RemoveGem(int index)
     {
         if (_gems[index] != null)
         {
@@ -32,5 +36,11 @@ public class Item_Weapon : Item_EquipmentItem
             return gem;
         }
         return null;
+    }
+
+    public bool IsGemAvailable()
+    {
+        var data = this.Data as ItemData_Weapon;
+        return _gems.Count < data.Tier;
     }
 }

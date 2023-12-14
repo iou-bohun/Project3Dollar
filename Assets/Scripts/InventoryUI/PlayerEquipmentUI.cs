@@ -10,9 +10,33 @@ public class PlayerEquipmentUI : MonoBehaviour
     [SerializeField]
     private SlotUI _weaponSlotUI;
 
+    [SerializeField] 
+    private SlotUI _charmSlotUI;
+
     [SerializeField]
     private SlotUI[] _gemSlotUI;
- 
+
+    private void Awake()
+    {
+        InitSlotUIIndex();
+        InitSlotUI();
+    }
+
+    private void InitSlotUIIndex() 
+    {
+        _weaponSlotUI.SetSlotIndex(10000);
+        for (int i = 0; i < _gemSlotUI.Length; i++)
+        {
+            _gemSlotUI[i].SetSlotIndex(20000 + i);
+        }
+        _charmSlotUI.SetSlotIndex(30000);
+    }
+
+    private void InitSlotUI()
+    {
+        UpdateWeaponSlot();
+        UpdateGemSlot();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -25,34 +49,25 @@ public class PlayerEquipmentUI : MonoBehaviour
         
     }
 
-    public void Equip(Item item)
+    private void UpdateWeaponSlot()
     {
-        if(item is Item_Weapon)
+        var weapon = _playerEquipment.getMyWeapon();
+        if (weapon != null)
         {
-            _playerEquipment.setMyWeapon(item);
-            _weaponSlotUI.SetItem(item.Data.Icon);
-            var weapon = (Item_Weapon)item;
-            ClearSlot();
-            UpdateGemSlot(weapon);
-        }
-        else if(item is Item_Gem)
-        {
-            var weapon = _playerEquipment.getMyWeapon();
-            if(weapon != null)
-            {
-                weapon.AddGem(item);
-                ClearSlot();
-                UpdateGemSlot(weapon);
-            }
+            _weaponSlotUI.SetItem(weapon.Data.Icon);
         }
     }
 
-    private void UpdateGemSlot(Item_Weapon weapon)
+    private void UpdateGemSlot()
     {
+        var weapon = _playerEquipment.getMyWeapon();
         int i = 0;
-        foreach(Item gem in weapon._gems)
+        if (weapon != null)
         {
-            _gemSlotUI[i++].SetItem(gem.Data.Icon);
+            foreach (Item gem in weapon._gems)
+            {
+                _gemSlotUI[i++].SetItem(gem.Data.Icon);
+            }
         }
     }
 
@@ -62,5 +77,37 @@ public class PlayerEquipmentUI : MonoBehaviour
         {
             _gemSlotUI[i].SetItem(null);
         }
+    }
+
+    public void Equip(Item item)
+    {
+        if (item is Item_Weapon)
+        {
+            _playerEquipment.setMyWeapon(item);
+            _weaponSlotUI.SetItem(item.Data.Icon);
+            var weapon = (Item_Weapon)item;
+            ClearSlot();
+            UpdateGemSlot();
+        }
+        else if (item is Item_Gem)
+        {
+            var weapon = _playerEquipment.getMyWeapon();
+            if (weapon != null)
+            {
+                weapon.AddGem(item);
+                ClearSlot();
+                UpdateGemSlot();
+            }
+        }
+    }
+
+    public Item GetPlayerWeapon()
+    {
+        return _playerEquipment.getMyWeapon();
+    }
+
+    public Item GetPlayerCharm()
+    {
+        return _playerEquipment.getMyCharm();
     }
 }

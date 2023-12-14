@@ -29,7 +29,7 @@ public class PlayerEquipment : MonoBehaviour
 
     public Item_Weapon getMyWeapon() => myWeapon;
 
-    public Item getCharm() => myCharm;
+    public Item getMyCharm() => myCharm;
 
     public void setMyWeapon(Item weapon) => myWeapon = weapon as Item_Weapon;
 

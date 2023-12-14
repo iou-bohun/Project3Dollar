@@ -30,7 +30,6 @@ public class InventoryUI : MonoBehaviour
     private List<RaycastResult> _rrList;
 
     private SlotUI selectedSlot;
-    private OptionPopupUI optionPopupUI;
 
     private int selectedOptionPopupIndex;
 
@@ -119,14 +118,19 @@ public class InventoryUI : MonoBehaviour
 
             if (selectedSlot != null && selectedSlot.HasItem)
             {
-                _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
-                //_optionPopupUI.SetIndex(selectedSlot.Index);
-                selectedOptionPopupIndex = selectedSlot.Index;
-                _optionPopupUI.Show();
+                if(selectedSlot.Index <= slots.Length)
+                {
+                    Debug.Log(selectedSlot.Index);
+                    _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
+                    selectedOptionPopupIndex = selectedSlot.Index;
+                    _optionPopupUI.Show();
+                }
+                else
+                {
+                    Debug.Log("플레이어 인벤토리 칸입니다");
+                }
             }
         }
-
-
     }
 
     private void EquipItemFromSlot()
@@ -134,9 +138,26 @@ public class InventoryUI : MonoBehaviour
         var item = _inventory.GetItem(selectedOptionPopupIndex);
         if(item != null) 
         {
-            Debug.Log(item.Data.name);
-            _playerEquipmentUI.Equip(item);
-            RemoveItemFromSlot();
+            if(item is Item_Weapon)
+            {
+                Debug.Log(item.Data.name);
+
+                var prevPlayerWeapon = _playerEquipmentUI.GetPlayerWeapon();
+                _playerEquipmentUI.Equip(item);
+                RemoveItemFromSlot();
+                _inventory.Add(prevPlayerWeapon, selectedOptionPopupIndex);
+            }
+            else if(item is Item_Gem)
+            {
+                Debug.Log(item.Data.name);
+
+                var playerWeapon = _playerEquipmentUI.GetPlayerWeapon() as Item_Weapon;
+                if ( playerWeapon != null && playerWeapon.IsGemAvailable())
+                {
+                    _playerEquipmentUI.Equip(item);
+                    RemoveItemFromSlot();
+                }
+            }
         }
         _optionPopupUI.Hide();
     }
