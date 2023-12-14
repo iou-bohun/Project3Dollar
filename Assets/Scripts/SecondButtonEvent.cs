@@ -10,6 +10,11 @@ public class SecondButtonEvent : EventButton
     private void OnEnable()
     {
         FadeButton();
-        SetText(1);
+        SetText(2);
+    }
+
+    public void ButttonClick()
+    {
+        
     }
 }
