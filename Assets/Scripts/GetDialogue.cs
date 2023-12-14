@@ -6,17 +6,17 @@ using DG.Tweening;
 
 public class GetDialogue : MonoBehaviour
 {
-    SceneManager sceneManager;
-    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] TextMeshProUGUI firstText;
     List<string> contextList = new List<string>();
-    public void GetDialogue_(string _EventName)
+    Dialogue dialogue = new Dialogue();
+    public Dialogue GetDialogue_(string _EventName)
     {
         TextAsset csvData = Resources.Load<TextAsset>("Events");
         string[] data = csvData.text.Split(new char[] { '\n' }); // ø£≈Õ ±‚¡ÿ¿∏∑Œ ¬…∞∑
         for(int i=1; i<data.Length;)
         {
             string[] row = data[i].Split(new char[] { ',' });
-            Dialogue dialogue = new Dialogue();
+           
             if (row[0].ToString() != _EventName)
             {
                 i++;
@@ -25,7 +25,7 @@ public class GetDialogue : MonoBehaviour
             {  
                 do
                 {
-                    contextList.Add(row[1]);
+                    contextList.Add(row[2]);
                     if (++i < data.Length)
                     {
                         row = data[i].Split(new char[] { ',' });
@@ -33,8 +33,10 @@ public class GetDialogue : MonoBehaviour
                     else
                         break;
                 } while (row[0].ToString() == "");
+                dialogue.contexts = contextList.ToArray();
             }
         }
+        return dialogue;
     }
 
     private void Start()
@@ -45,9 +47,9 @@ public class GetDialogue : MonoBehaviour
 
     IEnumerator Typing()
     {
-        text.text = contextList[0];
-        TMPText(text, 1f);
-
+        firstText.text = contextList[0];
+        TMPText(firstText, 1.5f);
+        
         yield return new WaitForSeconds(1.5f);
         
     }
@@ -57,4 +59,5 @@ public class GetDialogue : MonoBehaviour
         text.maxVisibleCharacters = 0;
         DOTween.To(x=> text.maxVisibleCharacters = (int)x,0f,text.text.Length,duration);
     }
+
 }

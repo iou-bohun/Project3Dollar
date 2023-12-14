@@ -156,11 +156,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1027711510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 650, y: 0}
-  m_SizeDelta: {x: 1300, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 1200, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &125694833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,8 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB2F9\uC2E0\uC740 \uAE38\uAC00\uC5D0 \uBA3C\uC9C0\uB97C \uB4A4\uC9D1\uC5B4\uC4F4
-    \uB9C8\uCC28\uB97C \uBC1C\uACAC\uD558\uACE0 \uAC00\uAE4C\uC774 \uB2E4\uAC00\uAC14\uB2E4."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 14babd1f57875b843ae28f26ca0844ba, type: 2}
   m_sharedMaterial: {fileID: -8838347146081287349, guid: 14babd1f57875b843ae28f26ca0844ba, type: 2}
@@ -302,8 +301,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171d196773c9a9640bef25cd1705b64d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EventName: HelpVictim
+  firstText: {fileID: 125694833}
+  eventName: FindWeagon
+  layout: {fileID: 1027711509}
   imageObject: {fileID: 432223392}
+  buttonObject:
+  - {fileID: 6733137598628676782, guid: 4106404baa0f64349ae56bf839dd6b32, type: 3}
+  - {fileID: 6733137598628676782, guid: 579490b5ddc05fe4d8ca029a041ca86a, type: 3}
   eventIImg: {fileID: 21300000, guid: cd91a6afa7035794b9c35b6f23c1dbcc, type: 3}
 --- !u!4 &321802391
 Transform:
@@ -337,7 +341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &432223393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -352,10 +356,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1027711510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 1000}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 650, y: -871.69}
+  m_SizeDelta: {x: 1300, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &432223394
 MonoBehaviour:
@@ -370,7 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -550,7 +554,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &530264278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -565,10 +569,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1027711510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 650, y: 0}
-  m_SizeDelta: {x: 1300, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 650, y: -1627.5349}
+  m_SizeDelta: {x: 1300, y: 231.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &530264279
 MonoBehaviour:
@@ -604,8 +608,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB2F9\uC2E0\uC740 \uAE38\uAC00\uC5D0 \uBA3C\uC9C0\uB97C \uB4A4\uC9D1\uC5B4\uC4F4
-    \uB9C8\uCC28\uB97C \uBC1C\uACAC\uD558\uACE0 \uAC00\uAE4C\uC774 \uB2E4\uAC00\uAC14\uB2E4."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 14babd1f57875b843ae28f26ca0844ba, type: 2}
   m_sharedMaterial: {fileID: -8838347146081287349, guid: 14babd1f57875b843ae28f26ca0844ba, type: 2}
@@ -923,15 +926,15 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_Spacing: 100
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
---- !u!1 &1276053931
+--- !u!1 &1549045159
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -939,44 +942,60 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1276053933}
-  - component: {fileID: 1276053932}
+  - component: {fileID: 1549045161}
+  - component: {fileID: 1549045163}
+  - component: {fileID: 1549045164}
   m_Layer: 0
-  m_Name: Dialogue
+  m_Name: DialogueMaanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1276053932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276053931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2321319b232f0c488bb334b66e06380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventName: HelpVictim
-  text: {fileID: 125694833}
---- !u!4 &1276053933
+--- !u!4 &1549045161
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276053931}
+  m_GameObject: {fileID: 1549045159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 345.1474, y: 1651.5375, z: -12.716963}
+  m_LocalPosition: {x: 771.1616, y: 1752.2219, z: -3.3860416}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1549045163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549045159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8b1816793aea54b9a6c695ad6c18c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theDialogue:
+    eventName: Helpvictim
+    contexts: []
+    buttons: []
+    buttonCount: 0
+--- !u!114 &1549045164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549045159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e909ec58cadab438c43cf0d4760d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1630830703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,5 +1108,5 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1630830706}
   - {fileID: 695652294}
-  - {fileID: 1276053933}
   - {fileID: 321802391}
+  - {fileID: 1549045161}
