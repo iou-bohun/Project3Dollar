@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EventButton : MonoBehaviour
 {
-    
+
     protected void FadeButton()
     {
         Color color = this.GetComponent<Image>().color;
@@ -15,8 +16,9 @@ public class EventButton : MonoBehaviour
         this.GetComponent<Image>().DOFade(1.0f, 2f);
     }
 
-    protected  void SetText(int num)
+    protected void SetText(int num)
     {
         GetComponentInChildren<TextMeshProUGUI>().text = DialogudManager.instance.TheDialogue.buttons[num];
     }
+
 }

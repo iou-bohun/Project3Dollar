@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class FirstButtonEvent : EventButton
 {
@@ -34,10 +36,12 @@ public class FirstButtonEvent : EventButton
     private void Fight()
     {
         Debug.Log("Fight");
+        SceneManager.LoadScene("SampleScene");
     }
 
     private void Examine()
     {
         Debug.Log("Examine");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

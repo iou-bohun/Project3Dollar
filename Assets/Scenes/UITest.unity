@@ -681,7 +681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstText: {fileID: 125694833}
-  eventName: SkeletonWizard
+  eventName: Start
   layout: {fileID: 1027711509}
   imageObject: {fileID: 432223392}
   buttonObject:

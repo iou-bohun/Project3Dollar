@@ -14,7 +14,7 @@ public class DialogudManager : MonoBehaviour
         {
             instance = this;
             ParseDialogue theParse = GetComponent<ParseDialogue>();
-            theDialogue = theParse.Parse(FindAnyObjectByType<SceneManager>().eventName);
+            theDialogue = theParse.Parse(FindAnyObjectByType<SceneManager_>().eventName);
         }
     }
 }
