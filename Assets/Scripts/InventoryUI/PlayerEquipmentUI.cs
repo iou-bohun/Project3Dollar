@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerEquipmentUI : MonoBehaviour
@@ -16,7 +17,9 @@ public class PlayerEquipmentUI : MonoBehaviour
     [SerializeField]
     private SlotUI[] _gemSlotUI;
 
-    private void Awake()
+    public int defaultIndex = 10000;
+
+    private void Start()
     {
         InitSlotUIIndex();
         InitSlotUI();
@@ -24,23 +27,18 @@ public class PlayerEquipmentUI : MonoBehaviour
 
     private void InitSlotUIIndex() 
     {
-        _weaponSlotUI.SetSlotIndex(10000);
+        _weaponSlotUI.SetSlotIndex(defaultIndex);
         for (int i = 0; i < _gemSlotUI.Length; i++)
         {
-            _gemSlotUI[i].SetSlotIndex(20000 + i);
+            _gemSlotUI[i].SetSlotIndex(defaultIndex * 2 + i);
         }
-        _charmSlotUI.SetSlotIndex(30000);
+        _charmSlotUI.SetSlotIndex(defaultIndex * 3);
     }
 
     private void InitSlotUI()
     {
         UpdateWeaponSlot();
         UpdateGemSlot();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -56,6 +54,11 @@ public class PlayerEquipmentUI : MonoBehaviour
         {
             _weaponSlotUI.SetItem(weapon.Data.Icon);
         }
+        else
+        {
+            _weaponSlotUI.SetItem(null);
+            Debug.Log("peu null");
+        }
     }
 
     private void UpdateGemSlot()
@@ -68,6 +71,15 @@ public class PlayerEquipmentUI : MonoBehaviour
             {
                 _gemSlotUI[i++].SetItem(gem.Data.Icon);
             }
+            while (i < 3)
+            {
+                _gemSlotUI[i].SetItem(null);
+                i++;
+            }
+        }
+        else
+        {
+            ClearSlot();
         }
     }
 
@@ -99,6 +111,28 @@ public class PlayerEquipmentUI : MonoBehaviour
                 UpdateGemSlot();
             }
         }
+    }
+
+    public Item Remove(int index)
+    {
+        Item item = null;
+        if(index / defaultIndex == 1)
+        {
+            item = _playerEquipment.getMyWeapon();
+            _playerEquipment.setMyWeapon(null);
+            UpdateWeaponSlot();
+            UpdateGemSlot();
+        }
+        else if(index / defaultIndex == 2)
+        {
+            item = _playerEquipment.getMyWeapon().RemoveGem(index % defaultIndex);
+            UpdateGemSlot();
+        }
+        else if(index / defaultIndex == 3)
+        {
+
+        }
+        return item;
     }
 
     public Item GetPlayerWeapon()

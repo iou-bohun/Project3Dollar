@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_Gem_BlueCrystal
   m_EditorClassIdentifier: 
   _id: 4
-  _name: 
-  _description: 
-  _icon: {fileID: 0}
-  _tier: 0
+  _name: BlueCrystal
+  _description: Its color is blueee
+  _icon: {fileID: 21300000, guid: db427fab3e94daf4caa704d9314a77a1, type: 3}
+  _tier: 2

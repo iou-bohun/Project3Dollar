@@ -598,6 +598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _equipButton: {fileID: 1960455463}
   _removeButton: {fileID: 1075096479}
+  _unequipButton: {fileID: 669483275}
   _inventory: {fileID: 1418814941}
 --- !u!1 &321740877
 GameObject:
@@ -1845,7 +1846,7 @@ GameObject:
   - component: {fileID: 669483276}
   - component: {fileID: 669483275}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: UnequipButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2010,7 +2011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: UnEquip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4178,10 +4179,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 595655039}
-  - {fileID: 260884920}
   - {fileID: 1273376748}
   - {fileID: 1324711858}
   - {fileID: 1876709760}
+  - {fileID: 260884920}
   m_Father: {fileID: 625523129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4229,6 +4230,7 @@ MonoBehaviour:
   _playerEquipmentUI: {fileID: 1876709761}
   _equipButton: {fileID: 1960455463}
   _removeButton: {fileID: 1075096479}
+  _unequipButton: {fileID: 669483275}
 --- !u!114 &1418814941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4246,6 +4248,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4a1806c677281ed44acc41221d658eed, type: 2}
   - {fileID: 11400000, guid: 0599db840605c8c4cb9f04bb035352ee, type: 2}
   - {fileID: 11400000, guid: 801eadcc601577246857da38e2783311, type: 2}
+  - {fileID: 11400000, guid: 93a27ed8bb8ea4a49a08bffd17d17aab, type: 2}
 --- !u!1001 &1479432203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5100,6 +5103,7 @@ MonoBehaviour:
   - {fileID: 401570868}
   - {fileID: 1479432205}
   - {fileID: 907752854}
+  defaultIndex: 10000
 --- !u!1 &1890441482
 GameObject:
   m_ObjectHideFlags: 0

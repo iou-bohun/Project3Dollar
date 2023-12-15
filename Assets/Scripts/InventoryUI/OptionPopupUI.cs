@@ -11,6 +11,8 @@ public class OptionPopupUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField]
     private Button _removeButton;
     [SerializeField]
+    private Button _unequipButton;
+    [SerializeField]
     private Inventory _inventory;
 
     public int Index { get; private set; }
@@ -62,5 +64,17 @@ public class OptionPopupUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         inContext = false;
+    }
+
+    public void DisableEquipButton()
+    {
+        _equipButton.interactable = false;
+        _unequipButton.interactable = true;
+    }
+
+    public void DisableUnEquipButton()
+    {
+        _unequipButton.interactable= false;
+        _equipButton.interactable = true;
     }
 }

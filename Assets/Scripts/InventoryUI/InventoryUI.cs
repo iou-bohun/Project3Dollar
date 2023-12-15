@@ -23,6 +23,8 @@ public class InventoryUI : MonoBehaviour
     private Button _equipButton;
     [SerializeField]
     private Button _removeButton;
+    [SerializeField]
+    private Button _unequipButton;
 
 
     private GraphicRaycaster _gr;
@@ -70,9 +72,11 @@ public class InventoryUI : MonoBehaviour
     {
         var equipButton = _equipButton.GetComponent<Button>();
         var removeButton = _removeButton.GetComponent<Button>();
+        var unequipButton = _unequipButton.GetComponent<Button>();
 
         removeButton.onClick.AddListener(RemoveItemFromSlot);
         equipButton.onClick.AddListener(EquipItemFromSlot);
+        unequipButton.onClick.AddListener(UnequipItemFromSlot);
     }
 
     // Update is called once per frame
@@ -124,10 +128,15 @@ public class InventoryUI : MonoBehaviour
                     _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
                     selectedOptionPopupIndex = selectedSlot.Index;
                     _optionPopupUI.Show();
+                    _optionPopupUI.DisableUnEquipButton();
                 }
                 else
                 {
-                    Debug.Log("플레이어 인벤토리 칸입니다");
+                    Debug.Log(selectedSlot.Index);
+                    _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
+                    selectedOptionPopupIndex = selectedSlot.Index;
+                    _optionPopupUI.Show();
+                    _optionPopupUI.DisableEquipButton();
                 }
             }
         }
@@ -142,17 +151,21 @@ public class InventoryUI : MonoBehaviour
             {
                 Debug.Log(item.Data.name);
 
-                var prevPlayerWeapon = _playerEquipmentUI.GetPlayerWeapon();
+                var prevPlayerWeapon = _playerEquipmentUI.GetPlayerWeapon() as Item_Weapon;
                 _playerEquipmentUI.Equip(item);
                 RemoveItemFromSlot();
-                _inventory.Add(prevPlayerWeapon, selectedOptionPopupIndex);
+                if(prevPlayerWeapon != null)
+                {
+                    Debug.Log(prevPlayerWeapon.Data.name);  
+                    _inventory.Add(prevPlayerWeapon, selectedOptionPopupIndex);
+                }
             }
             else if(item is Item_Gem)
             {
                 Debug.Log(item.Data.name);
 
                 var playerWeapon = _playerEquipmentUI.GetPlayerWeapon() as Item_Weapon;
-                if ( playerWeapon != null && playerWeapon.IsGemAvailable())
+                if (playerWeapon != null && playerWeapon.IsGemAvailable())
                 {
                     _playerEquipmentUI.Equip(item);
                     RemoveItemFromSlot();
@@ -164,6 +177,14 @@ public class InventoryUI : MonoBehaviour
     public void RemoveItemFromSlot()
     {
         _inventory.Remove(selectedOptionPopupIndex);
+        _optionPopupUI.Hide();
+    }
+
+    public void UnequipItemFromSlot()
+    {
+        var item = _playerEquipmentUI.Remove(selectedOptionPopupIndex);
+        int i = _inventory.FindEmptySlotIndex();
+        _inventory.Add(item, i);
         _optionPopupUI.Hide();
     }
 

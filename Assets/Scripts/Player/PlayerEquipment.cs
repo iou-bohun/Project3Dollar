@@ -12,22 +12,34 @@ public class PlayerEquipment : MonoBehaviour
 
     private void Awake()
     {
-        myWeapon = null;
-        myCharm = null;
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        myWeapon = null;
+        myCharm = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        /*if (myWeapon != null)
+        {
+            Debug.Log("not null");
+        }
+        else Debug.Log("is null");*/
     }
 
-    public Item_Weapon getMyWeapon() => myWeapon;
+    public Item_Weapon getMyWeapon()
+    {
+        if (myWeapon is not null)
+        {
+            Debug.Log(myWeapon.Data.name);
+            return myWeapon;
+        }
+        else return null;
+    }
+
 
     public Item getMyCharm() => myCharm;
 
