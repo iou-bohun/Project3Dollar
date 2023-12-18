@@ -12,6 +12,8 @@ using UnityEngine.UI;
 public class SceneManager_ : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI firstText;
+    [SerializeField] TextMeshProUGUI textText1;
+    [SerializeField] TextMeshProUGUI textText2;
     public string eventName;
     public GameObject layout;
 
@@ -53,6 +55,8 @@ public class SceneManager_ : MonoBehaviour
     IEnumerator Typing()
     {
         firstText.text = DialogudManager.instance.TheDialogue.contexts[0];
+        textText1.text = DialogudManager.instance.TheDialogue.contexts[0];
+        textText2.text = DialogudManager.instance.TheDialogue.contexts[0];
         TMPText(firstText, 2f);
         yield return new WaitForSeconds(1.5f);
     }
