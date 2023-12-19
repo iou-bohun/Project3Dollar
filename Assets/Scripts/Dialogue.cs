@@ -14,12 +14,3 @@ public class Dialogue
     [Tooltip("버튼 수")]
     public int buttonCount;
 }
-
-[System.Serializable]
-public class DialogueEvent
-{
-    public string name; //이벤트의 이름
-
-    public Vector2 line; // 대사 라인
-    public Dialogue[] dialogues;
-}
