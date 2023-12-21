@@ -23,11 +23,11 @@ public class PlayerEquipment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (myWeapon != null)
+        if (myWeapon != null)
         {
             Debug.Log("not null");
         }
-        else Debug.Log("is null");*/
+        else Debug.Log("is null");
     }
 
     public Item_Weapon getMyWeapon()

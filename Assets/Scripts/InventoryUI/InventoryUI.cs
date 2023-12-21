@@ -109,7 +109,15 @@ public class InventoryUI : MonoBehaviour
             if (selectedSlot != null && selectedSlot.HasItem)
             {
                 var data = _inventory.GetItemData(selectedSlot.Index);
-                _itemDescription.SetDescriptiponText(data.Description);
+                if(data is ItemData_Weapon)
+                {
+                    _itemDescription.SetWeaponDescription(data as ItemData_Weapon);
+                }
+                else if(data is ItemData_Gem)
+                {
+                    _itemDescription.SetGemDescriptipon(data as ItemData_Gem);
+                }
+                
             }
         }
     }
@@ -176,15 +184,27 @@ public class InventoryUI : MonoBehaviour
     }
     public void RemoveItemFromSlot()
     {
-        _inventory.Remove(selectedOptionPopupIndex);
-        _optionPopupUI.Hide();
+        if(selectedOptionPopupIndex <= slots.Length)
+        {
+            _inventory.Remove(selectedOptionPopupIndex);
+            _optionPopupUI.Hide();
+        }
+        
     }
 
     public void UnequipItemFromSlot()
     {
-        var item = _playerEquipmentUI.Remove(selectedOptionPopupIndex);
         int i = _inventory.FindEmptySlotIndex();
-        _inventory.Add(item, i);
+        
+        if(i != -1)
+        {
+            var item = _playerEquipmentUI.Remove(selectedOptionPopupIndex);
+            _inventory.Add(item, i);
+        }
+        else
+        {
+            Debug.Log("인벤토리에 남는 슬롯이 없습니다");
+        }
         _optionPopupUI.Hide();
     }
 
