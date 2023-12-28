@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item_HealPotion : Item_UsableItem
 {
-    public Item_HealPotion(ItemData_HealPotion data): base(data) { 
+    public Item_HealPotion(ItemData_HealPotion data, int amount = 1): base(data, amount) { 
         
     }
 }

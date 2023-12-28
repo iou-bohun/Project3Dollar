@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -25,6 +26,8 @@ public class InventoryUI : MonoBehaviour
     private Button _removeButton;
     [SerializeField]
     private Button _unequipButton;
+    [SerializeField]
+    private TMP_Text potionAmountText;
 
 
     private GraphicRaycaster _gr;
@@ -221,5 +224,10 @@ public class InventoryUI : MonoBehaviour
     public void RemoveItem(int index)
     {
         slots[index].RemoveItem();
+    }
+
+    public void UpdatePotionSlot(int amount)
+    {
+        potionAmountText.text = amount.ToString();
     }
 }

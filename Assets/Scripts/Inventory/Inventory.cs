@@ -9,9 +9,13 @@ public class Inventory : MonoBehaviour
     private Item[] _items;
 
     [SerializeField]
+    private Item_HealPotion _healPotion;
+
+    [SerializeField]
     private InventoryUI _inventoryUI;
 
     public ItemData[] itemDatas;
+    public ItemData _healPotionData;
 
     private void Awake()
     {
@@ -21,6 +25,12 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         _items = new Item[20];
+
+        ItemData_HealPotion data = new ItemData_HealPotion();
+        _healPotion = data.CreateItem() as Item_HealPotion;
+
+        _healPotion.SetAmount(0);
+        _inventoryUI.UpdatePotionSlot(_healPotion.Amount);
 
         for (int i = 0; i < itemDatas.Length; i++)
         {
@@ -74,18 +84,31 @@ public class Inventory : MonoBehaviour
     }
 
     // 아이템 추가 메소드
-    public void Add(ItemData itemData)
+    public void Add(ItemData itemData, int amount = 1)
     {
         int index;
 
-        index = FindEmptySlotIndex();
-        if (index != -1)
+        if(itemData is ItemData_UsableItem)
         {
-            // 아이템을 생성하여 슬롯에 추가
-            _items[index] = itemData.CreateItem();
-
-            UpdateSlot(index);
+            if(itemData is ItemData_HealPotion healPotion)
+            {
+                _healPotion.SetAmount(_healPotion.Amount + amount);
+                _inventoryUI.UpdatePotionSlot(_healPotion.Amount);
+                Debug.Log(_healPotion.Amount);
+            }
         }
+        else
+        {
+            index = FindEmptySlotIndex();
+            if (index != -1)
+            {
+                // 아이템을 생성하여 슬롯에 추가
+                _items[index] = itemData.CreateItem();
+
+                UpdateSlot(index);
+            }
+        }
+        
     }
 
     public void Add(Item item, int index)
@@ -138,6 +161,11 @@ public class Inventory : MonoBehaviour
     {
         int idx = Random.Range(0, 20);
         Remove(idx);
+    }
+
+    public void AddPotion()
+    {
+        Add(_healPotionData, Random.Range(1, 4));
     }
     #endregion
 }
