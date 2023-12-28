@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Mathematics;
 using UnityEditor;
@@ -11,9 +12,7 @@ using UnityEngine.UI;
 
 public class SceneManager_ : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI firstText;
-    [SerializeField] TextMeshProUGUI textText1;
-    [SerializeField] TextMeshProUGUI textText2;
+    [SerializeField] TextMeshProUGUI[] DTxt;
     public string eventName;
     public GameObject layout;
 
@@ -22,43 +21,46 @@ public class SceneManager_ : MonoBehaviour
     public Sprite eventIImg;
     Image thisImg;
 
+    float dialogueDuration = 1.4f;
+
     private void Awake()
     {
-        eventName = GetRandonEvent();
+       eventName = GetRandonEvent();
     }
 
     private void Start()
     {
-
         Sprite sprite = Resources.Load<Sprite>("Sprite/" + eventName);
         thisImg = imageObject.GetComponent<Image>();
         thisImg.sprite = sprite;
         StartCoroutine("Typing");
         StartCoroutine("imageActive");
-
     }
     IEnumerator imageActive()
     {
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(dialogueDuration*DialogudManager.instance.TheDialogue.contexts.Length);
+        Debug.Log(DialogudManager.instance.TheDialogue.contexts.Length);
         imageObject.SetActive(true);
         thisImg.DOFade(1.0f, 2f);
         Invoke("SpawnButton", 1f);
     }
     public void SpawnButton()
     {
-        for (int i = 0; i < DialogudManager.instance.TheDialogue.buttonCount - 1; i++)
+        for (int i = 0; i < DialogudManager.instance.TheDialogue.buttonCount; i++)
         {
-            Instantiate(buttonObject[i], layout.transform);
+           Instantiate(buttonObject[i], layout.transform);
         }
     }
 
     IEnumerator Typing()
     {
-        firstText.text = DialogudManager.instance.TheDialogue.contexts[0];
-        textText1.text = DialogudManager.instance.TheDialogue.contexts[0];
-        textText2.text = DialogudManager.instance.TheDialogue.contexts[0];
-        TMPText(firstText, 2f);
-        yield return new WaitForSeconds(1.5f);
+        for(int i=0; i<DialogudManager.instance.TheDialogue.contexts.Length; i++)
+        {
+            DTxt[i].text = DialogudManager.instance.TheDialogue.contexts[i];
+            TMPText(DTxt[i], dialogueDuration);
+            yield return new WaitForSeconds(dialogueDuration);
+            
+        }
     }
 
     public void TMPText(TextMeshProUGUI text, float duration)
@@ -70,7 +72,7 @@ public class SceneManager_ : MonoBehaviour
     String GetRandonEvent()
     {
         string[] eventNameArray = { "FindWeagon","HelpVictim","Skeleton",
-            "SkeletonHood", "Zombie","Ghoul","SkeletonWizard","SkeletonKnight",};
+            "SkeletonHood", "Zombie","Ghoul","SkeletonWizard","SkeletonKnight","Test","Test1"};
         int randomIndex = UnityEngine.Random.Range(0, eventNameArray.Length);
         return eventNameArray[randomIndex];
     }

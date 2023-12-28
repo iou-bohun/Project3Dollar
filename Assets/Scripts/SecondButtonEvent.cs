@@ -11,9 +11,9 @@ public class SecondButtonEvent : EventButton
     private string text;
     private void OnEnable()
     {
-        text = DialogudManager.instance.TheDialogue.buttons[2];
+        text = DialogudManager.instance.TheDialogue.buttons[1];
         FadeButton();
-        SetText(2);
+        SetText(1);
     }
 
     public void ButttonClick()

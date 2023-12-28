@@ -12,9 +12,9 @@ public class FirstButtonEvent : EventButton
     private string text;
     private void OnEnable()
     {
-        text = DialogudManager.instance.TheDialogue.buttons[1];
+        text = DialogudManager.instance.TheDialogue.buttons[0];
         FadeButton();
-        SetText(1);
+        SetText(0);
     }
 
     public void ButtonClick()
