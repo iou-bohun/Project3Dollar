@@ -8,7 +8,10 @@ public class PlayerEquipment : MonoBehaviour
     private Item_Weapon myWeapon;
 
     [SerializeField]
-    private Item myCharm;
+    private Item_Ring[] myRing;
+
+    [SerializeField]
+    private Item_Charm myCharm;
 
     private void Awake()
     {
@@ -18,6 +21,7 @@ public class PlayerEquipment : MonoBehaviour
     {
         myWeapon = null;
         myCharm = null;
+        myRing = new Item_Ring[3];
     }
 
     // Update is called once per frame
@@ -36,17 +40,15 @@ public class PlayerEquipment : MonoBehaviour
         else return null;
     }
 
-
     public Item getMyCharm() => myCharm;
 
-    public void setMyWeapon(Item weapon) => myWeapon = weapon as Item_Weapon;
+    public Item_Ring[] getMyRing() => myRing;
+    public void setMyWeapon(Item_Weapon weapon) => myWeapon = weapon;
 
-    public void setMyCharm(Item charm) => myCharm = charm;
+    public void setMyCharm(Item_Charm charm) => myCharm = charm;
 
-    public void AddGemInMyWeapon(Item gem)
+    public void setMyRing(Item_Ring ring)
     {
-        var weapon = myWeapon as Item_Weapon;
 
-        weapon.AddGem(gem);
     }
 }

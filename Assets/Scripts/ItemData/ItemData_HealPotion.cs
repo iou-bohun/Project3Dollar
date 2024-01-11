@@ -21,6 +21,6 @@ public class ItemData_HealPotion : ItemData_UsableItem
 
     public override void Use()
     {
-        throw new System.NotImplementedException();
+        Debug.Log($"체력을 {HealValue}만큼 회복했습니다.");
     }
 }

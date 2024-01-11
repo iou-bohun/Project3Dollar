@@ -17,6 +17,8 @@ public class Inventory : MonoBehaviour
     public ItemData[] itemDatas;
     public ItemData _healPotionData;
 
+    public int slotNum;
+
     private void Awake()
     {
     }
@@ -24,10 +26,9 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _items = new Item[20];
+        _items = new Item[slotNum * 3];
 
-        ItemData_HealPotion data = new ItemData_HealPotion();
-        _healPotion = data.CreateItem() as Item_HealPotion;
+        _healPotion = _healPotionData.CreateItem() as Item_HealPotion;
 
         _healPotion.SetAmount(0);
         _inventoryUI.UpdatePotionSlot(_healPotion.Amount);
@@ -47,6 +48,22 @@ public class Inventory : MonoBehaviour
     public int FindEmptySlotIndex(int startIndex = 0)
     {
         for (int i = startIndex; i < 20; i++)
+            if (_items[i] == null)
+                return i;
+        return -1;
+    }
+
+    public int FindEmptySlotIndex(ItemData.Type type)
+    {
+        int time=0;
+        if (type == ItemData.Type.Weapon)
+        {
+            time = 0;
+        }
+        else if (type == ItemData.Type.Ring) time = 1;
+        else if (type == ItemData.Type.Charm) time = 2;
+        
+        for (int i = slotNum * time; i < slotNum * (time + 1); i++)
             if (_items[i] == null)
                 return i;
         return -1;
@@ -99,11 +116,12 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            index = FindEmptySlotIndex();
+            index = FindEmptySlotIndex(itemData.type);
             if (index != -1)
             {
                 // 아이템을 생성하여 슬롯에 추가
                 _items[index] = itemData.CreateItem();
+                Debug.Log(index + ": " + itemData.Name);
 
                 UpdateSlot(index);
             }

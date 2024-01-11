@@ -8,10 +8,17 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    [Header("Slots")]
     [SerializeField]
-    private Transform slotParent;
+    private Transform weaponSlotParent;
+    [SerializeField]
+    private Transform ringSlotParent;
+    [SerializeField]
+    private Transform charmSlotParent;
     [SerializeField]
     private SlotUI[] slots;
+
+
     [SerializeField]
     private Inventory _inventory;
     [SerializeField]
@@ -42,7 +49,11 @@ public class InventoryUI : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        slots = slotParent.GetComponentsInChildren<SlotUI>();
+        List<SlotUI> list = new List<SlotUI>();
+        list.AddRange(weaponSlotParent.GetComponentsInChildren<SlotUI>());
+        list.AddRange(ringSlotParent.GetComponentsInChildren<SlotUI>());
+        list.AddRange(charmSlotParent.GetComponentsInChildren<SlotUI>());
+        slots = list.ToArray();
     }
 #endif
 
@@ -58,10 +69,9 @@ public class InventoryUI : MonoBehaviour
 
     private void InitSlot()
     {
-        for (int i = 0; i < 20; i++)
-        {
+        int i;
+        for (i = 0; i < 60; i++)
             slots[i].SetSlotIndex(i);
-        }
     }
 
     private void Awake()
@@ -116,9 +126,9 @@ public class InventoryUI : MonoBehaviour
                 {
                     _itemDescription.SetWeaponDescription(data as ItemData_Weapon);
                 }
-                else if(data is ItemData_Gem)
+                else if(data is ItemData_Ring)
                 {
-                    _itemDescription.SetGemDescriptipon(data as ItemData_Gem);
+                    _itemDescription.SetRingDescriptipon(data as ItemData_Ring);
                 }
                 
             }
@@ -171,15 +181,31 @@ public class InventoryUI : MonoBehaviour
                     _inventory.Add(prevPlayerWeapon, selectedOptionPopupIndex);
                 }
             }
-            else if(item is Item_Gem)
+            else if(item is Item_Ring)
             {
                 Debug.Log(item.Data.name);
 
-                var playerWeapon = _playerEquipmentUI.GetPlayerWeapon() as Item_Weapon;
-                if (playerWeapon != null && playerWeapon.IsGemAvailable())
+                if(_playerEquipmentUI.FindEmptyRIngSlotIndex() == -1)
+                {
+                    Debug.Log("ºó ½½·ÔÀÌ ¾ø½Àˆ•.");
+                }
+                else
                 {
                     _playerEquipmentUI.Equip(item);
                     RemoveItemFromSlot();
+                }
+            }
+            else if(item is Item_Charm)
+            {
+                Debug.Log(item.Data.name);
+
+                var prevPlayerCharm = _playerEquipmentUI.GetPlayerCharm() as Item_Charm;
+                _playerEquipmentUI.Equip(item);
+                RemoveItemFromSlot();
+                if (prevPlayerCharm != null)
+                {
+                    Debug.Log(prevPlayerCharm.Data.name);
+                    _inventory.Add(prevPlayerCharm, selectedOptionPopupIndex);
                 }
             }
         }
@@ -197,7 +223,12 @@ public class InventoryUI : MonoBehaviour
 
     public void UnequipItemFromSlot()
     {
-        int i = _inventory.FindEmptySlotIndex();
+        ItemData.Type type;
+        if (selectedOptionPopupIndex / _playerEquipmentUI.defaultIndex == 1) type = ItemData.Type.Weapon;
+        else if (selectedOptionPopupIndex / _playerEquipmentUI.defaultIndex == 2) type = ItemData.Type.Ring;
+        else type = ItemData.Type.Charm;
+
+        int i = _inventory.FindEmptySlotIndex(type);
         
         if(i != -1)
         {

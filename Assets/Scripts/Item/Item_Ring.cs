@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Item_Gem : Item_EquipmentItem
+public class Item_Ring : Item_EquipmentItem
 {
-    public Item_Gem(ItemData_Gem data) : base(data) { }
+    public Item_Ring(ItemData_Ring data) : base(data) { }
 }

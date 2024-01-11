@@ -15,7 +15,7 @@ public class PlayerEquipmentUI : MonoBehaviour
     private SlotUI _charmSlotUI;
 
     [SerializeField]
-    private SlotUI[] _gemSlotUI;
+    private SlotUI[] _ringSlotUI;
 
     public int defaultIndex = 10000;
 
@@ -28,9 +28,9 @@ public class PlayerEquipmentUI : MonoBehaviour
     private void InitSlotUIIndex() 
     {
         _weaponSlotUI.SetSlotIndex(defaultIndex);
-        for (int i = 0; i < _gemSlotUI.Length; i++)
+        for (int i = 0; i < _ringSlotUI.Length; i++)
         {
-            _gemSlotUI[i].SetSlotIndex(defaultIndex * 2 + i);
+            _ringSlotUI[i].SetSlotIndex(defaultIndex * 2 + i);
         }
         _charmSlotUI.SetSlotIndex(defaultIndex * 3);
     }
@@ -38,7 +38,7 @@ public class PlayerEquipmentUI : MonoBehaviour
     private void InitSlotUI()
     {
         UpdateWeaponSlot();
-        UpdateGemSlot();
+        UpdateRingSlot();
     }
 
     // Update is called once per frame
@@ -61,55 +61,38 @@ public class PlayerEquipmentUI : MonoBehaviour
         }
     }
 
-    private void UpdateGemSlot()
+    private void UpdateRingSlot()
     {
-        var weapon = _playerEquipment.getMyWeapon();
-        int i = 0;
-        if (weapon != null)
+        var rings = _playerEquipment.getMyRing();
+        for (int i = 0; i < _ringSlotUI.Length; i++)
         {
-            foreach (Item gem in weapon._gems)
+            if (rings[i] != null)
             {
-                _gemSlotUI[i++].SetItem(gem.Data.Icon);
+                _ringSlotUI[i].SetItem(rings[i].Data.Icon);
             }
-            while (i < 3)
+            else
             {
-                _gemSlotUI[i].SetItem(null);
-                i++;
+                _ringSlotUI[i].SetItem(null);
             }
-        }
-        else
-        {
-            ClearSlot();
         }
     }
 
-    private void ClearSlot()
-    {
-        for (int i = 0; i < _gemSlotUI.Length; i++)
-        {
-            _gemSlotUI[i].SetItem(null);
-        }
-    }
+    //private void ClearSlot()
+    //{
+    //    for (int i = 0; i < _ringSlotUI.Length; i++)
+    //    {
+    //        _gemSlotUI[i].SetItem(null);
+    //    }
+    //}
 
     public void Equip(Item item)
     {
         if (item is Item_Weapon)
         {
-            _playerEquipment.setMyWeapon(item);
+            _playerEquipment.setMyWeapon(item as Item_Weapon);
             _weaponSlotUI.SetItem(item.Data.Icon);
             var weapon = (Item_Weapon)item;
-            ClearSlot();
-            UpdateGemSlot();
-        }
-        else if (item is Item_Gem)
-        {
-            var weapon = _playerEquipment.getMyWeapon();
-            if (weapon != null)
-            {
-                weapon.AddGem(item);
-                ClearSlot();
-                UpdateGemSlot();
-            }
+            //ClearSlot();
         }
     }
 
@@ -121,12 +104,10 @@ public class PlayerEquipmentUI : MonoBehaviour
             item = _playerEquipment.getMyWeapon();
             _playerEquipment.setMyWeapon(null);
             UpdateWeaponSlot();
-            UpdateGemSlot();
         }
         else if(index / defaultIndex == 2)
         {
-            item = _playerEquipment.getMyWeapon().RemoveGem(index % defaultIndex);
-            UpdateGemSlot();
+            
         }
         else if(index / defaultIndex == 3)
         {
@@ -143,5 +124,14 @@ public class PlayerEquipmentUI : MonoBehaviour
     public Item GetPlayerCharm()
     {
         return _playerEquipment.getMyCharm();
+    }
+
+    public int FindEmptyRIngSlotIndex()
+    {
+        for (int i = 0; i < _ringSlotUI.Length; i++)
+        {
+            if (!_ringSlotUI[i].HasItem) return i;
+        }
+        return -1;
     }
 }

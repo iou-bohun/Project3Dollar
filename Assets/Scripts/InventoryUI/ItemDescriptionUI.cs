@@ -45,7 +45,7 @@ public class ItemDescriptionUI : MonoBehaviour
         
     }
 
-    public void SetGemDescriptipon(ItemData_Gem data)
+    public void SetRingDescriptipon(ItemData_Ring data)
     {
         gemDescrpitionGO.SetActive(true);
         weaponDescrpitionGO.SetActive(false);

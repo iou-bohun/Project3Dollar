@@ -14,6 +14,7 @@ public class SlotUI : MonoBehaviour
     public int Index { get; private set; }
     public bool HasItem => _iconImage.sprite != null;
 
+
     private void Awake()
     {
         _iconImage.raycastTarget = false;
@@ -51,4 +52,5 @@ public class SlotUI : MonoBehaviour
         _iconImage.sprite = null;
         HideIcon();
     }
+
 }

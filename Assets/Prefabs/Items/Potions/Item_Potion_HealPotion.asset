@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abdec829e72285e48945c173e2dd9881, type: 3}
-  m_Name: Item_Potion_HealingPotion
+  m_Name: Item_Potion_HealPotion
   m_EditorClassIdentifier: 
-  _id: 5
-  _name: HealingPotion
-  _description: "\uAE30\uBCF8\uC801\uC778 \uBB3C\uC57D\uC774\uB2E4. \n\uC0AC\uC6A9
-    \uC2DC \uCCB4\uB825\uC744 50 \uD68C\uBCF5\uD55C\uB2E4."
+  type: 3
+  _id: 30
+  _name: Heal Potion
+  _description: "\uB9C8\uC2DC\uBA74 \uCCB4\uB825\uC774 \uD68C\uBCF5\uB418\uB294 \uD3EC\uC158"
   _icon: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
   _maxAmount: 99
-  _healValue: 50
+  _healValue: 30
   potionFunction: {fileID: 11400000, guid: 2f3e9b21157462c4195f6062edf6b63c, type: 2}

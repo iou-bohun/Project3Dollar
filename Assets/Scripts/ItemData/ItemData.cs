@@ -9,6 +9,16 @@ public abstract class ItemData : ScriptableObject
     public string Description => _description;
     public Sprite Icon => _icon;
 
+    public enum Type
+    {
+        Weapon,
+        Ring,
+        Charm,
+        Potion
+    }
+
+    public Type type;
+
     // æ∆¿Ã≈€ ID
     [SerializeField]
     private int _id;

@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eab68f6335c0a945b86122599ba235d, type: 3}
-  m_Name: Item_Weapon_LongSword
+  m_Name: Item_Weapon_NiceSword
   m_EditorClassIdentifier: 
-  _id: 0
-  _name: Long Sword
-  _description: It's just simple long sword
-  _icon: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
+  type: 0
+  _id: 1
+  _name: Nice Sword
+  _description: "\uAF64 \uAD1C\uCC2E\uC740 \uC7A5\uAC80\n\uAC80\uC774\uB77C \uBD80\uB97C\uB9CC
+    \uD55C \uBB34\uAE30\uC774\uB2E4."
+  _icon: {fileID: 21300000, guid: cce2bfefbfd45fd44aea3a06160e6266, type: 3}
   _tier: 1
-  _damage: 10
-  _slashValue: 1
+  _damage: 30
+  _slashValue: 1.5
   _pierceValue: 1
-  _strikeValue: 1
+  _strikeValue: 0.2
