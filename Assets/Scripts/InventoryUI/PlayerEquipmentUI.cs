@@ -77,6 +77,20 @@ public class PlayerEquipmentUI : MonoBehaviour
         }
     }
 
+    private void UpdateCharmSlot()
+    {
+        var charm = _playerEquipment.getMyCharm();
+        if (charm != null)
+        {
+            _charmSlotUI.SetItem(charm.Data.Icon);
+        }
+        else
+        {
+            _charmSlotUI.SetItem(null);
+            Debug.Log("peu null");
+        }
+    }
+
     //private void ClearSlot()
     //{
     //    for (int i = 0; i < _ringSlotUI.Length; i++)
@@ -93,6 +107,11 @@ public class PlayerEquipmentUI : MonoBehaviour
             _weaponSlotUI.SetItem(item.Data.Icon);
             var weapon = (Item_Weapon)item;
             //ClearSlot();
+        }
+        else if(item is Item_Charm)
+        {
+            _playerEquipment.setMyCharm(item as Item_Charm);
+            UpdateCharmSlot();
         }
     }
 
@@ -111,7 +130,9 @@ public class PlayerEquipmentUI : MonoBehaviour
         }
         else if(index / defaultIndex == 3)
         {
-
+            item = _playerEquipment.getMyCharm();
+            _playerEquipment.setMyCharm(null);
+            UpdateCharmSlot();
         }
         return item;
     }

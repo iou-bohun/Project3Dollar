@@ -187,7 +187,7 @@ public class InventoryUI : MonoBehaviour
 
                 if(_playerEquipmentUI.FindEmptyRIngSlotIndex() == -1)
                 {
-                    Debug.Log("ºó ½½·ÔÀÌ ¾ø½Àˆ•.");
+                    Debug.Log("ºó ½½·ÔÀÌ ¾ø½À´Ï´Ù.");
                 }
                 else
                 {
@@ -211,14 +211,19 @@ public class InventoryUI : MonoBehaviour
         }
         _optionPopupUI.Hide();
     }
+
     public void RemoveItemFromSlot()
     {
-        if(selectedOptionPopupIndex <= slots.Length)
+        if(selectedOptionPopupIndex <= slots.Length * 3)
         {
             _inventory.Remove(selectedOptionPopupIndex);
             _optionPopupUI.Hide();
         }
-        
+        else
+        {
+            _playerEquipmentUI.Remove(selectedOptionPopupIndex);
+            _optionPopupUI.Hide();
+        }
     }
 
     public void UnequipItemFromSlot()
