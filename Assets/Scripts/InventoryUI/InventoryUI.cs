@@ -184,15 +184,17 @@ public class InventoryUI : MonoBehaviour
             else if(item is Item_Ring)
             {
                 Debug.Log(item.Data.name);
+                int index = _playerEquipmentUI.FindEmptyRIngSlotIndex();
 
-                if(_playerEquipmentUI.FindEmptyRIngSlotIndex() == -1)
+                if (index == -1)
                 {
                     Debug.Log("ºó ½½·ÔÀÌ ¾ø½À´Ï´Ù.");
                 }
                 else
                 {
-                    _playerEquipmentUI.Equip(item);
+                    _playerEquipmentUI.Equip(item, index);
                     RemoveItemFromSlot();
+                    Debug.Log(index);
                 }
             }
             else if(item is Item_Charm)

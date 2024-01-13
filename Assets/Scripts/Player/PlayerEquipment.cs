@@ -21,7 +21,7 @@ public class PlayerEquipment : MonoBehaviour
     {
         myWeapon = null;
         myCharm = null;
-        myRing = new Item_Ring[3];
+        myRing = new Item_Ring[3] { null, null, null };
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class PlayerEquipment : MonoBehaviour
         
     }
 
-    public Item_Weapon getMyWeapon()
+    public Item_Weapon GetMyWeapon()
     {
         if (myWeapon is not null)
         {
@@ -40,15 +40,17 @@ public class PlayerEquipment : MonoBehaviour
         else return null;
     }
 
-    public Item getMyCharm() => myCharm;
+    public Item GetMyCharm() => myCharm;
 
-    public Item_Ring[] getMyRing() => myRing;
-    public void setMyWeapon(Item_Weapon weapon) => myWeapon = weapon;
+    public Item_Ring[] GetMyRings() => myRing;
 
-    public void setMyCharm(Item_Charm charm) => myCharm = charm;
+    public Item_Ring GetMyRing(int index) => myRing[index];
+    public void SetMyWeapon(Item_Weapon weapon) => myWeapon = weapon;
 
-    public void setMyRing(Item_Ring ring)
+    public void SetMyCharm(Item_Charm charm) => myCharm = charm;
+
+    public void SetMyRing(Item_Ring ring, int index)
     {
-
+        myRing[index] = ring;
     }
 }

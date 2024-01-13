@@ -49,7 +49,7 @@ public class PlayerEquipmentUI : MonoBehaviour
 
     private void UpdateWeaponSlot()
     {
-        var weapon = _playerEquipment.getMyWeapon();
+        var weapon = _playerEquipment.GetMyWeapon();
         if (weapon != null)
         {
             _weaponSlotUI.SetItem(weapon.Data.Icon);
@@ -63,7 +63,7 @@ public class PlayerEquipmentUI : MonoBehaviour
 
     private void UpdateRingSlot()
     {
-        var rings = _playerEquipment.getMyRing();
+        var rings = _playerEquipment.GetMyRings();
         for (int i = 0; i < _ringSlotUI.Length; i++)
         {
             if (rings[i] != null)
@@ -79,7 +79,7 @@ public class PlayerEquipmentUI : MonoBehaviour
 
     private void UpdateCharmSlot()
     {
-        var charm = _playerEquipment.getMyCharm();
+        var charm = _playerEquipment.GetMyCharm();
         if (charm != null)
         {
             _charmSlotUI.SetItem(charm.Data.Icon);
@@ -99,18 +99,24 @@ public class PlayerEquipmentUI : MonoBehaviour
     //    }
     //}
 
-    public void Equip(Item item)
+    public void Equip(Item item, int index = -1)
     {
         if (item is Item_Weapon)
         {
-            _playerEquipment.setMyWeapon(item as Item_Weapon);
+            _playerEquipment.SetMyWeapon(item as Item_Weapon);
             _weaponSlotUI.SetItem(item.Data.Icon);
             var weapon = (Item_Weapon)item;
             //ClearSlot();
         }
+        else if(item is Item_Ring)
+        {
+            _playerEquipment.SetMyRing(item as Item_Ring, index);
+            _ringSlotUI[index].SetItem(item.Data.Icon);
+            UpdateRingSlot();
+        }
         else if(item is Item_Charm)
         {
-            _playerEquipment.setMyCharm(item as Item_Charm);
+            _playerEquipment.SetMyCharm(item as Item_Charm);
             UpdateCharmSlot();
         }
     }
@@ -120,18 +126,20 @@ public class PlayerEquipmentUI : MonoBehaviour
         Item item = null;
         if(index / defaultIndex == 1)
         {
-            item = _playerEquipment.getMyWeapon();
-            _playerEquipment.setMyWeapon(null);
+            item = _playerEquipment.GetMyWeapon();
+            _playerEquipment.SetMyWeapon(null);
             UpdateWeaponSlot();
         }
         else if(index / defaultIndex == 2)
         {
-            
+            item = _playerEquipment.GetMyRing(index % defaultIndex);
+            _playerEquipment.SetMyRing(null, index %  defaultIndex);
+            UpdateRingSlot();
         }
         else if(index / defaultIndex == 3)
         {
-            item = _playerEquipment.getMyCharm();
-            _playerEquipment.setMyCharm(null);
+            item = _playerEquipment.GetMyCharm();
+            _playerEquipment.SetMyCharm(null);
             UpdateCharmSlot();
         }
         return item;
@@ -139,19 +147,20 @@ public class PlayerEquipmentUI : MonoBehaviour
 
     public Item GetPlayerWeapon()
     {
-        return _playerEquipment.getMyWeapon();
+        return _playerEquipment.GetMyWeapon();
     }
 
     public Item GetPlayerCharm()
     {
-        return _playerEquipment.getMyCharm();
+        return _playerEquipment.GetMyCharm();
     }
 
     public int FindEmptyRIngSlotIndex()
     {
-        for (int i = 0; i < _ringSlotUI.Length; i++)
+        Item_Ring[] rings = _playerEquipment.GetMyRings();
+        for (int i = 0; i < rings.Length; i++)
         {
-            if (!_ringSlotUI[i].HasItem) return i;
+            if (rings[i] == null ) return i;
         }
         return -1;
     }
