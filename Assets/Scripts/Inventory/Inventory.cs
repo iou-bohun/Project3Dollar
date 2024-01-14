@@ -163,7 +163,15 @@ public class Inventory : MonoBehaviour
         return _items[index];
     }
 
-
+    public Item[] GetItems()
+    {
+        Item[] items = new Item[slotNum];
+        for (int i = 0; i < slotNum; i++)
+        {
+            items[i] = GetItem(i);
+        }
+        return items;
+    }
 
     // Test
     #region

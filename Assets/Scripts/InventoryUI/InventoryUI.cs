@@ -160,6 +160,10 @@ public class InventoryUI : MonoBehaviour
                     _optionPopupUI.DisableEquipButton();
                 }
             }
+            else
+            {
+                Debug.Log("슬롯을 못찾음");
+            }
         }
     }
 
