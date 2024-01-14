@@ -28,6 +28,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]
     private PlayerEquipmentUI _playerEquipmentUI;
     [SerializeField]
+    private WeaponListScroll _listScrollView;
+    [SerializeField]
     private Button _equipButton;
     [SerializeField]
     private Button _removeButton;
@@ -43,7 +45,7 @@ public class InventoryUI : MonoBehaviour
 
     private SlotUI selectedSlot;
 
-    private int selectedOptionPopupIndex;
+    public int selectedOptionPopupIndex;
 
 
 #if UNITY_EDITOR
@@ -184,6 +186,9 @@ public class InventoryUI : MonoBehaviour
                     Debug.Log(prevPlayerWeapon.Data.name);  
                     _inventory.Add(prevPlayerWeapon, selectedOptionPopupIndex);
                 }
+                _listScrollView.UpdateAllSlot();
+                Debug.Log("selectedOptionPopupIndex : "+ selectedOptionPopupIndex);
+                Debug.Log("Equip ½ÇÇà");
             }
             else if(item is Item_Ring)
             {

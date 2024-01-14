@@ -12787,10 +12787,12 @@ MonoBehaviour:
   _itemDescription: {fileID: 1324711859}
   _optionPopupUI: {fileID: 260884921}
   _playerEquipmentUI: {fileID: 1876709761}
+  _listScrollView: {fileID: 1803842539}
   _equipButton: {fileID: 1960455463}
   _removeButton: {fileID: 1075096479}
   _unequipButton: {fileID: 669483275}
   potionAmountText: {fileID: 1520484949}
+  selectedOptionPopupIndex: 0
 --- !u!224 &1433707804 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7672091275971614702, guid: 9e97f80ccbeb29c48b895d892d915dc9, type: 3}
@@ -14994,6 +14996,7 @@ MonoBehaviour:
   - {fileID: 922424561}
   - {fileID: 253297028}
   _inventory: {fileID: 791381015}
+  _inventoryUI: {fileID: 1418814940}
   _optionPopupUI: {fileID: 260884921}
 --- !u!1001 &1810652688
 PrefabInstance:

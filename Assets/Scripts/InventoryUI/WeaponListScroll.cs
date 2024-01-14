@@ -14,12 +14,15 @@ public class WeaponListScroll : MonoBehaviour
     [SerializeField]
     private Inventory _inventory;
     [SerializeField]
+    private InventoryUI _inventoryUI;
+    [SerializeField]
     private OptionPopupUI _optionPopupUI;
 
     private GraphicRaycaster _gr;
     private PointerEventData _ped;
     private List<RaycastResult> _rrList;
     private SlotUI selectedSlot;
+    private int selectedOptionPopupIndex;
 
     private void OnValidate()
     {
@@ -93,7 +96,7 @@ public class WeaponListScroll : MonoBehaviour
                 {
                     Debug.Log(selectedSlot.Index);
                     _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
-                    //selectedOptionPopupIndex = selectedSlot.Index;
+                    _inventoryUI. selectedOptionPopupIndex = selectedSlot.Index;
                     _optionPopupUI.Show();
                     _optionPopupUI.DisableUnEquipButton();
                 }
