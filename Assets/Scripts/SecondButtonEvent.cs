@@ -15,26 +15,8 @@ public class SecondButtonEvent : EventButton
         FadeButton();
         SetText(1);
     }
-
-    public void ButttonClick()
+    public void SecondButtonClick()
     {
-        switch (text)
-        {
-            case "도망간다":
-                Run();
-                break;
-            case "무시한다":
-                Run();
-                break;
-            default:
-                Debug.Log("Bug");
-                break;
-        }
-    }
-
-   private void Run()
-    {
-        Debug.Log("도망간다");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ButtonClick(text);
     }
 }

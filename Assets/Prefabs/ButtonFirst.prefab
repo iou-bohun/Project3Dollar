@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -3531629106986632853}
         m_TargetAssemblyTypeName: FirstButtonEvent, Assembly-CSharp
-        m_MethodName: ButtonClick
+        m_MethodName: FrifstButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

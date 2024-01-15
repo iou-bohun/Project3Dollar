@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2466513581394785024}
         m_TargetAssemblyTypeName: SecondButtonEvent, Assembly-CSharp
-        m_MethodName: ButttonClick
+        m_MethodName: SecondButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
