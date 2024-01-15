@@ -54,6 +54,16 @@ public class PlayerTurnController : MonoBehaviour
         setBehaviorBtns(true);
         setAttackBtns(false);
     }
+
+    public void item()
+    {
+        
+    }
+
+    public void defense()
+    {
+        
+    }
     
     public void attack()
     {

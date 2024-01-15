@@ -20,8 +20,9 @@ public class MonsterController : MonoBehaviour, Controller
     
     
     // Start is called before the first frame update
-    void Start()
+    void Start() //monsterDataLoadAndEnroll
     {
+        //비쥬얼적인 어떤 이미지를 불러올지까지
         HP = 20;
         damage = new float[3]{0.2f,1.2f,0.8f};
         block = new float[3]{0.2f,1.2f,0.8f};
@@ -55,8 +56,10 @@ public class MonsterController : MonoBehaviour, Controller
 
     public void getTurn()
     {
+        //행동을 할지에 대한 정보
         float damage = 10 * this.damage[(int)BattleManager.attackType.Pierce];
         BattleManager.Instance.notifyAttackToPlayer(BattleManager.attackType.Pierce,(int)damage);
+        //BattleManager에게 턴이 끝났음을 알림
         BattleManager.Instance.notifyTurnEnd();
     }
 
