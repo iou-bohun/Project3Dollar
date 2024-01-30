@@ -3,42 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class MonsterController : MonoBehaviour, Controller
 {
-    private int HP;
+    [SerializeField] private EnemyInfo data;
     private float tick;
-    private float speed;
-
-    private float[] damage = new float[3];
-    private float[] block = new float[3];
-
     private String code;
+    private Text text;
+    private int HP;
 
-    [SerializeField]private Text text;
-    
-    
     // Start is called before the first frame update
-    void Start() //monsterDataLoadAndEnroll
+    public void loadDataAndEnroll(EnemyInfo x,string code, GameObject text)
     {
-        //비쥬얼적인 어떤 이미지를 불러올지까지
-        HP = 20;
-        damage = new float[3]{0.2f,1.2f,0.8f};
-        block = new float[3]{0.2f,1.2f,0.8f};
-        code = "001";
-        speed = 3;
+        data = x;
+        this.code = code;
         BattleManager.Instance.enrollMonster(code, this);
+        this.text = text.GetComponent<Text>();
+        text.transform.position = new Vector3(transform.position.x, transform.position.y-1, 0);
+        HP = data.MaxHP;
+        this.text = text.GetComponent<Text>();
+        StartCoroutine("viewInfo");
     }
 
-    private void Update()
+
+    IEnumerator viewInfo()
     {
-        text.text = "tick : "+tick+"//HP : "+HP;
+        while (true)
+        {
+            text.text = "tick : "+tick+"//HP : "+HP;
+            yield return null;
+        }
     }
 
     public bool getTick()
     {
-        tick += speed;
+        tick += data.Speed;
         if (tick >= 20f)
         {
             tick = 0;
@@ -49,15 +50,15 @@ public class MonsterController : MonoBehaviour, Controller
 
     public void getDamage(BattleManager.attackType type, float damage)
     {
-        float trueDamage = block[(int)type] * damage;
-        HP = HP - (int)trueDamage;
+        float trueDamage = data.Block[(int)type] * damage;
+        HP -= (int)trueDamage;
         if(HP<=0) die();
     }
 
     public void getTurn()
     {
         //행동을 할지에 대한 정보
-        float damage = 10 * this.damage[(int)BattleManager.attackType.Pierce];
+        float damage = 10;
         BattleManager.Instance.notifyAttackToPlayer(BattleManager.attackType.Pierce,(int)damage);
         //BattleManager에게 턴이 끝났음을 알림
         BattleManager.Instance.notifyTurnEnd();
@@ -67,6 +68,8 @@ public class MonsterController : MonoBehaviour, Controller
     {
         gameObject.SetActive(false);
         BattleManager.Instance.monsterDie(code);
+        Destroy(text);
+        Destroy(this);
     }
 
     public string getCode()
