@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public class MonsterController : MonoBehaviour, Controller
     private String code;
 
     [SerializeField]private Text text;
+    [SerializeField] private TextMeshProUGUI dialogue;
     
     
     // Start is called before the first frame update
@@ -51,7 +53,8 @@ public class MonsterController : MonoBehaviour, Controller
     {
         float trueDamage = block[(int)type] * damage;
         HP = HP - (int)trueDamage;
-        if(HP<=0) die();
+        dialogue.text = "몬스터에게 " + trueDamage + "의 피해를 입혔습니다!";
+        if (HP<=0) die();
     }
 
     public void getTurn()
