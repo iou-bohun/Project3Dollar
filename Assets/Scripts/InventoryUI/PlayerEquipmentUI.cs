@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class PlayerEquipmentUI : MonoBehaviour
 {
@@ -163,5 +164,27 @@ public class PlayerEquipmentUI : MonoBehaviour
             if (rings[i] == null ) return i;
         }
         return -1;
+    }
+
+    public ItemData GetItemData(int index)
+    {
+        Item item = null;
+        if (index / defaultIndex == 1)
+        {
+            item = _playerEquipment.GetMyWeapon();
+            UpdateWeaponSlot();
+        }
+        else if (index / defaultIndex == 2)
+        {
+            item = _playerEquipment.GetMyRing(index % defaultIndex);
+            UpdateRingSlot();
+        }
+        else if (index / defaultIndex == 3)
+        {
+            item = _playerEquipment.GetMyCharm();
+            UpdateCharmSlot();
+        }
+
+        return item.Data;
     }
 }

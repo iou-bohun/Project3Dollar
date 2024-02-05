@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemDescriptionUI : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class ItemDescriptionUI : MonoBehaviour
     private TMP_Text gemName;
     [SerializeField]
     private TMP_Text gemDescription;
+
+    [Header("Button")]
+    private Button equipButton;
+    private Button unEquipButton;
+    private Button dropButton;
 
     // Start is called before the first frame update
     void Start()
