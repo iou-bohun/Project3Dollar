@@ -123,8 +123,26 @@ public class InventoryUI : MonoBehaviour
 
             if (selectedSlot != null && selectedSlot.HasItem)
             {
-                var data = _inventory.GetItemData(selectedSlot.Index);
-                if(data is ItemData_Weapon)
+                selectedOptionPopupIndex = selectedSlot.Index;
+
+                ItemData data;
+
+                Debug.Log(selectedSlot.Index);
+
+                if (selectedSlot.Index <= slots.Length)
+                {
+                    _equipButton.gameObject.SetActive(true);
+                    _unequipButton.gameObject.SetActive(false);
+                    data = _inventory.GetItemData(selectedSlot.Index);
+                }
+                else
+                {
+                    _equipButton.gameObject.SetActive(false);
+                    _unequipButton.gameObject.SetActive(true);
+                    data = _playerEquipmentUI.GetItemData(selectedSlot.Index);
+                }
+
+                if (data is ItemData_Weapon)
                 {
                     _itemDescription.SetWeaponDescription(data as ItemData_Weapon);
                 }
@@ -171,6 +189,7 @@ public class InventoryUI : MonoBehaviour
 
     private void EquipItemFromSlot()
     {
+        Debug.Log(selectedOptionPopupIndex);
         var item = _inventory.GetItem(selectedOptionPopupIndex);
         if(item != null) 
         {
@@ -186,7 +205,7 @@ public class InventoryUI : MonoBehaviour
                     Debug.Log(prevPlayerWeapon.Data.name);  
                     _inventory.Add(prevPlayerWeapon, selectedOptionPopupIndex);
                 }
-                _listScrollView.UpdateAllSlot();
+                //_listScrollView.UpdateAllSlot();
                 Debug.Log("selectedOptionPopupIndex : "+ selectedOptionPopupIndex);
                 Debug.Log("Equip ½ÇÇà");
             }

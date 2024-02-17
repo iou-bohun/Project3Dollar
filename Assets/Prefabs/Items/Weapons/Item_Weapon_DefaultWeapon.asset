@@ -23,3 +23,4 @@ MonoBehaviour:
   _slashValue: 1
   _pierceValue: 0.7
   _strikeValue: 0.3
+  _maxDurability: 10
