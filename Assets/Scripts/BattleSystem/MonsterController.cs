@@ -16,7 +16,6 @@ public abstract class MonsterController : MonoBehaviour, Controller
     private int HP;
     private String name;
 
-    [SerializeField]private Text text;
     [SerializeField] private TextMeshProUGUI dialogue;
     
     public void loadDataAndEnroll(string code, GameObject text)
