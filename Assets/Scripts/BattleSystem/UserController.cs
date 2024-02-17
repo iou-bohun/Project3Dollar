@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +16,7 @@ public class UserController : MonoBehaviour, Controller
     private float[] block = new float[3];
 
     [SerializeField]private Text text;
+    [SerializeField] private TextMeshProUGUI dialogue;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,7 @@ public class UserController : MonoBehaviour, Controller
     {
         float trueDamage = block[(int)type] * damage;
         HP = HP - (int)trueDamage;
+        dialogue.text = "플레이어가  " + trueDamage+"의 데미지를 입었습니다.";
     }
 
     public void getTurn()

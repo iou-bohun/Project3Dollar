@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -15,7 +16,9 @@ public abstract class MonsterController : MonoBehaviour, Controller
     private int HP;
     private String name;
 
-    // Start is called before the first frame update
+    [SerializeField]private Text text;
+    [SerializeField] private TextMeshProUGUI dialogue;
+    
     public void loadDataAndEnroll(string code, GameObject text)
     {
         this.code = code;
@@ -52,7 +55,8 @@ public abstract class MonsterController : MonoBehaviour, Controller
     {
         float trueDamage = data.Block[(int)type] * damage;
         HP -= (int)trueDamage;
-        if(HP<=0) die();
+        dialogue.text = "몬스터에게 " + trueDamage + "의 피해를 입혔습니다!";
+        if (HP<=0) die();
     }
 
     public abstract void getTurn();

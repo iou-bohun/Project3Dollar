@@ -1,12 +1,7 @@
 using DG.Tweening;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.Mathematics;
-using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +20,7 @@ public class SceneManager_ : MonoBehaviour
 
     private void Awake()
     {
-       eventName = GetRandonEvent();
+       eventName = GetRandomEvent();
     }
 
     private void Start()
@@ -69,7 +64,7 @@ public class SceneManager_ : MonoBehaviour
         DOTween.To(x => text.maxVisibleCharacters = (int)x, 0f, text.text.Length, duration);
     }
 
-    String GetRandonEvent()
+    String GetRandomEvent()
     {
         string[] eventNameArray = { "FindWeagon","HelpVictim","Skeleton",
             "SkeletonHood", "Zombie","Ghoul","SkeletonWizard","SkeletonKnight","Test","Test1"};
