@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49c647ce2ff4445a8c034d0f81afbea9, type: 3}
-  m_Name: Slime
+  m_Name: SkeletonArcher
   m_EditorClassIdentifier: 
-  name: Slime
+  name: SkeletonArcher
   maxHp: 3
   speed: 3
   block:

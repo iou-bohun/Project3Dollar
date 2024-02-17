@@ -6,18 +6,18 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-public class MonsterController : MonoBehaviour, Controller
+public abstract class MonsterController : MonoBehaviour, Controller
 {
     [SerializeField] private EnemyInfo data;
     private float tick;
     private String code;
     private Text text;
     private int HP;
+    private String name;
 
     // Start is called before the first frame update
-    public void loadDataAndEnroll(EnemyInfo x,string code, GameObject text)
+    public void loadDataAndEnroll(string code, GameObject text)
     {
-        data = x;
         this.code = code;
         BattleManager.Instance.enrollMonster(code, this);
         this.text = text.GetComponent<Text>();
@@ -55,14 +55,14 @@ public class MonsterController : MonoBehaviour, Controller
         if(HP<=0) die();
     }
 
-    public void getTurn()
-    {
+    public abstract void getTurn();
+    /*{
         //행동을 할지에 대한 정보
         float damage = 10;
         BattleManager.Instance.notifyAttackToPlayer(BattleManager.attackType.Pierce,(int)damage);
         //BattleManager에게 턴이 끝났음을 알림
         BattleManager.Instance.notifyTurnEnd();
-    }
+    }*/
 
     public void die()
     {

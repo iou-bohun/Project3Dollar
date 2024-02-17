@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7923449971999300834}
   - component: {fileID: 3593937260584841897}
-  - component: {fileID: 7131646497525927365}
   - component: {fileID: 7257025938920829665}
+  - component: {fileID: 221291763924815601}
   m_Layer: 0
-  m_Name: monster
+  m_Name: SkeletonArcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,19 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7131646497525927365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6842068810702372414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85d0422ea70a1f64cb2a44a573007767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textPrefab: {fileID: 9157469225572326886, guid: 4f35915750de9d3498d57d2412549295, type: 3}
 --- !u!58 &7257025938920829665
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +121,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &221291763924815601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6842068810702372414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61736bf32450462782e365ef86a5e92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 9dfb9e60cac8dba45b3b3bd23ca8178e, type: 2}
