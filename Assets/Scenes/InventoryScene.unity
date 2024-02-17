@@ -7269,6 +7269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2431ff971b87fa14f94ff34bb9d5d31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myWeapon:
+    durability: 0
   myRing: []
 --- !u!4 &791381014
 Transform:

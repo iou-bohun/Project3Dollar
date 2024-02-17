@@ -19,6 +19,9 @@ public class BattleManager : MonoBehaviour
     public enum attackType{Slash, Pierce, Strike}
 
     [SerializeField]private Text text;
+
+    //팝업
+    [SerializeField] GameObject PopUpWindow;
     
     // Start is called before the first frame update
     void Awake()
@@ -125,8 +128,13 @@ public class BattleManager : MonoBehaviour
         if (_monster.Count <= 0)
         {
             //대충 게임 승
+            //보상
             Debug.Log("you win");
         }
     }
 
+    private void PopUpReward()
+    {
+        PopUpWindow.SetActive(true);
+    }
 }

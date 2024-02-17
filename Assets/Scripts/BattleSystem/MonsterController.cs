@@ -54,7 +54,7 @@ public abstract class MonsterController : MonoBehaviour, Controller
     {
         float trueDamage = data.Block[(int)type] * damage;
         HP -= (int)trueDamage;
-        dialogue.text = "몬스터에게 " + trueDamage + "의 피해를 입혔습니다!";
+        //ialogue.text = "몬스터에게 " + trueDamage + "의 피해를 입혔습니다!";
         if (HP<=0) die();
     }
 

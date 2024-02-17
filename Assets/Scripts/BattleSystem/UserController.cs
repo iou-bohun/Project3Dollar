@@ -22,8 +22,8 @@ public class UserController : MonoBehaviour, Controller
     {
         BattleManager.Instance.enrollPlayer(this);
         block = new float[3]{0.2f,1.2f,0.8f};
-        speed = 7;
-        HP = 100;
+        HP =  Player.Instance.HP;
+        speed = Player.Instance.Speed;
     }
 
     private void Update()

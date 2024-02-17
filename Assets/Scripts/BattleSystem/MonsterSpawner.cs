@@ -9,10 +9,6 @@ public enum MonsterType
 public class MonsterSpawner : MonoBehaviour
 {
     [SerializeField]
-    private List<EnemyInfo> EnemyDatas;
-    [SerializeField]
-    private GameObject EnamyPrefab;
-    [SerializeField]
     private GameObject TextPrefab;
 
     [SerializeField] private Canvas canvas;
