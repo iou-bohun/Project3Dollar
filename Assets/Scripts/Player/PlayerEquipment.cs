@@ -22,13 +22,14 @@ public class PlayerEquipment : MonoBehaviour
 
     private void Awake()
     {
+        myWeapon = null;
+        myCharm = null;
+        myRing = new Item_Ring[3] { null, null, null };
     }
     // Start is called before the first frame update
     void Start()
     {
-        myWeapon = null;
-        myCharm = null;
-        myRing = new Item_Ring[3] { null, null, null };
+       
     }
 
     // Update is called once per frame

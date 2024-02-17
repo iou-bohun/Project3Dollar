@@ -92,6 +92,8 @@ public class InventoryUI : MonoBehaviour
         removeButton.onClick.AddListener(RemoveItemFromSlot);
         equipButton.onClick.AddListener(EquipItemFromSlot);
         unequipButton.onClick.AddListener(UnequipItemFromSlot);
+
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
