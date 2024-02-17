@@ -6,6 +6,8 @@ using static UnityEditor.Progress;
 
 public class PlayerEquipmentUI : MonoBehaviour
 {
+    public static PlayerEquipmentUI instance;
+
     [SerializeField]
     private PlayerEquipment _playerEquipment;
 
@@ -19,6 +21,11 @@ public class PlayerEquipmentUI : MonoBehaviour
     private SlotUI[] _ringSlotUI;
 
     public int defaultIndex = 10000;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
