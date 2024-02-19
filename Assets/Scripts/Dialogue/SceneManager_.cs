@@ -66,7 +66,7 @@ public class SceneManager_ : MonoBehaviour
     String GetRandomEvent()
     {
         string[] eventNameArray = { "FindWeagon","HelpVictim","Skeleton",
-            "SkeletonHood", "Zombie","Ghoul","SkeletonWizard","SkeletonKnight","Test","Test1"};
+            "SkeletonHood", "Zombie","Ghoul","SkeletonWizard","SkeletonKnight"};
         int randomIndex = UnityEngine.Random.Range(0, eventNameArray.Length);
         return eventNameArray[randomIndex];
     }

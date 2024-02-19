@@ -41,19 +41,17 @@ public class EventButton : MonoBehaviour
     }
     private void Run()
     {
-        Debug.Log("µµ¸Á°£´Ù");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Fight()
     {
-        Debug.Log("Fight");
         SceneManager.LoadScene("BattleReDesign");
+
     }
 
     private void Examine()
     {
-        Debug.Log("Examine");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
