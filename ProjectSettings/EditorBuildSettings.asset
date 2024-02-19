@@ -7,8 +7,11 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+    guid: bd0df80b684a4724ab11ac47fe2b71b3
+  - enabled: 0
     path: Assets/Scenes/EventScene.unity
     guid: a7ec74f0e7956bc4eb3f71be363a2f25
+  - enabled: 1
+    path: Assets/Scenes/BattleReDesign.unity
+    guid: 033a05ceb8d8b864487076612376faad
   m_configObjects: {}

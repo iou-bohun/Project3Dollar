@@ -11,7 +11,6 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Item_HealPotion _healPotion;
 
-    [SerializeField]
     private InventoryUI _inventoryUI;
 
     public ItemData[] itemDatas;
@@ -21,13 +20,22 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
+        _items = new Item[slotNum * 3];
+
+        var obj = FindObjectsOfType<Inventory>();
+        if (obj.Length == 1)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _items = new Item[slotNum * 3];
-
         _healPotion = _healPotionData.CreateItem() as Item_HealPotion;
 
         _healPotion.SetAmount(0);
@@ -37,12 +45,6 @@ public class Inventory : MonoBehaviour
         {
             Add(itemDatas[i]);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public int FindEmptySlotIndex(int startIndex = 0)
@@ -92,9 +94,9 @@ public class Inventory : MonoBehaviour
         }*/
     }
 
-    private void UpdateAllSlot()
+    public void UpdateAllSlot()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 20 * 3; i++)
         {
             UpdateSlot(i);
         }

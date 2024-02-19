@@ -8,7 +8,6 @@ public class PlayerEquipmentUI : MonoBehaviour
 {
     public static PlayerEquipmentUI instance;
 
-    [SerializeField]
     private PlayerEquipment _playerEquipment;
 
     [SerializeField]
@@ -29,6 +28,7 @@ public class PlayerEquipmentUI : MonoBehaviour
 
     private void Start()
     {
+        _playerEquipment = GameObject.Find("InventoryGO").GetComponent<PlayerEquipment>();
         InitSlotUIIndex();
         InitSlotUI();
     }
@@ -47,6 +47,7 @@ public class PlayerEquipmentUI : MonoBehaviour
     {
         UpdateWeaponSlot();
         UpdateRingSlot();
+        UpdateCharmSlot();
     }
 
     // Update is called once per frame
@@ -74,6 +75,7 @@ public class PlayerEquipmentUI : MonoBehaviour
         var rings = _playerEquipment.GetMyRings();
         for (int i = 0; i < _ringSlotUI.Length; i++)
         {
+            Debug.Log(i);
             if (rings[i] != null)
             {
                 _ringSlotUI[i].SetItem(rings[i].Data.Icon);
