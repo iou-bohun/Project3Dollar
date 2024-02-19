@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public enum AttackType
@@ -84,6 +85,13 @@ public class PlayerEquipment : MonoBehaviour
         }
 
         return attackValue * attackTypeValue;
+    }
+
+    public int GetPlayerSpeedValue()
+    {
+        ItemData_Weapon data = myWeapon.Data as ItemData_Weapon;
+
+        return data.Speed;
     }
 
     public void Attack()

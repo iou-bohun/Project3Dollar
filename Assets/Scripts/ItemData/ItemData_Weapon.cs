@@ -9,6 +9,8 @@ public class ItemData_Weapon : ItemData_EquipmentItem
 
     public int MaxDurability => _maxDurability;
 
+    public int Speed => _speed;
+
     public float SlashValue => _slashValue;
     public float PierceValue => _pierceValue;
     public float StrikeValue => _strikeValue;
@@ -28,6 +30,9 @@ public class ItemData_Weapon : ItemData_EquipmentItem
 
     [SerializeField]
     private int _maxDurability;
+
+    [SerializeField]
+    private int _speed;
     public override Item CreateItem()
     {
         return new Item_Weapon(this);
