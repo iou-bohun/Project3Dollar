@@ -568,17 +568,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &550583061 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8325492947316322457, guid: c23a562cf062f9846a7489a264b208c6, type: 3}
-  m_PrefabInstance: {fileID: 2132647901}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e8671c8b32c094ba60f43059735451, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,70 +642,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619394800}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &654295283
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 654295286}
-  - component: {fileID: 654295285}
-  - component: {fileID: 654295284}
-  m_Layer: 0
-  m_Name: inventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &654295284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654295283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2431ff971b87fa14f94ff34bb9d5d31a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myWeapon:
-    durability: 0
-  myRing: []
---- !u!114 &654295285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654295283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0bcbb302f5297c43924a70f077458e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inventoryUI: {fileID: 550583061}
-  itemDatas: []
-  _healPotionData: {fileID: 11400000, guid: 90080dc9b4ab0944fb5eef745421b0f4, type: 2}
-  slotNum: 20
---- !u!4 &654295286
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654295283}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1869,7 +1794,7 @@ PrefabInstance:
     - target: {fileID: 1409694705507305946, guid: c23a562cf062f9846a7489a264b208c6, type: 3}
       propertyPath: _playerEquipment
       value: 
-      objectReference: {fileID: 654295284}
+      objectReference: {fileID: 0}
     - target: {fileID: 1744308313127293779, guid: c23a562cf062f9846a7489a264b208c6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2957,7 +2882,7 @@ PrefabInstance:
     - target: {fileID: 8325492947316322457, guid: c23a562cf062f9846a7489a264b208c6, type: 3}
       propertyPath: _inventory
       value: 
-      objectReference: {fileID: 654295285}
+      objectReference: {fileID: 0}
     - target: {fileID: 8353116300019540214, guid: c23a562cf062f9846a7489a264b208c6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3418,7 +3343,6 @@ SceneRoots:
   - {fileID: 679411308}
   - {fileID: 2122915424}
   - {fileID: 1186386190}
-  - {fileID: 654295286}
   - {fileID: 776007939}
   - {fileID: 2132647901}
   - {fileID: 249191206}

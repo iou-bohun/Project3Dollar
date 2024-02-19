@@ -18,13 +18,9 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]
     private SlotUI[] slots;
 
-
-    [SerializeField]
     private Inventory _inventory;
     [SerializeField]
     private ItemDescriptionUI _itemDescription;
-    [SerializeField]
-    private OptionPopupUI _optionPopupUI;
     [SerializeField]
     private PlayerEquipmentUI _playerEquipmentUI;
     [SerializeField]
@@ -80,6 +76,10 @@ public class InventoryUI : MonoBehaviour
     {
         Init();
         InitSlot();
+
+        GameObject go = GameObject.Find("InventoryGO");
+        _inventory = go.GetComponent<Inventory>();
+        _inventory.ConnectUI(this);
     }
 
     // Start is called before the first frame update
@@ -93,6 +93,8 @@ public class InventoryUI : MonoBehaviour
         equipButton.onClick.AddListener(EquipItemFromSlot);
         unequipButton.onClick.AddListener(UnequipItemFromSlot);
 
+        _inventory.UpdateAllSlot();
+
         this.gameObject.SetActive(false);
     }
 
@@ -100,9 +102,7 @@ public class InventoryUI : MonoBehaviour
     void Update()
     {
         _ped.position = Input.mousePosition;
-        OnRightClick();
         OnLeftClick();
-        
     }
     
     private T RaycastAndGetFirstComponent<T>() where T : Component
@@ -153,38 +153,6 @@ public class InventoryUI : MonoBehaviour
                     _itemDescription.SetRingDescriptipon(data as ItemData_Ring);
                 }
                 
-            }
-        }
-    }
-
-    private void OnRightClick()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            selectedSlot = RaycastAndGetFirstComponent<SlotUI>();
-
-            if (selectedSlot != null && selectedSlot.HasItem)
-            {
-                if(selectedSlot.Index <= slots.Length)
-                {
-                    Debug.Log(selectedSlot.Index);
-                    _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
-                    selectedOptionPopupIndex = selectedSlot.Index;
-                    _optionPopupUI.Show();
-                    _optionPopupUI.DisableUnEquipButton();
-                }
-                else
-                {
-                    Debug.Log(selectedSlot.Index);
-                    _optionPopupUI.SetPopupUIRect(selectedSlot.transform);
-                    selectedOptionPopupIndex = selectedSlot.Index;
-                    _optionPopupUI.Show();
-                    _optionPopupUI.DisableEquipButton();
-                }
-            }
-            else
-            {
-                Debug.Log("슬롯을 못찾음");
             }
         }
     }
@@ -241,7 +209,6 @@ public class InventoryUI : MonoBehaviour
                 }
             }
         }
-        _optionPopupUI.Hide();
     }
 
     public void RemoveItemFromSlot()
@@ -249,12 +216,10 @@ public class InventoryUI : MonoBehaviour
         if(selectedOptionPopupIndex <= slots.Length * 3)
         {
             _inventory.Remove(selectedOptionPopupIndex);
-            _optionPopupUI.Hide();
         }
         else
         {
             _playerEquipmentUI.Remove(selectedOptionPopupIndex);
-            _optionPopupUI.Hide();
         }
     }
 
@@ -276,7 +241,6 @@ public class InventoryUI : MonoBehaviour
         {
             Debug.Log("인벤토리에 남는 슬롯이 없습니다");
         }
-        _optionPopupUI.Hide();
     }
 
     public void SetInventoryReference(Inventory invetory)

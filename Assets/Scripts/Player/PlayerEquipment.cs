@@ -23,8 +23,8 @@ public class PlayerEquipment : MonoBehaviour
 
     private void Awake()
     {
-        myWeapon = null;
-        myCharm = null;
+        SetMyWeapon(null);
+        SetMyCharm(null);
         myRing = new Item_Ring[3] { null, null, null };
     }
     // Start is called before the first frame update
@@ -41,7 +41,7 @@ public class PlayerEquipment : MonoBehaviour
 
     public Item_Weapon GetMyWeapon()
     {
-        if (myWeapon is not null)
+        if (myWeapon != null)
         {
             Debug.Log(myWeapon.Data.name);
             return myWeapon;
