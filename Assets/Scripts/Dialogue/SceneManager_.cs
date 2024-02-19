@@ -13,7 +13,6 @@ public class SceneManager_ : MonoBehaviour
 
     public GameObject imageObject;
     public GameObject[] buttonObject;
-    public Sprite eventIImg;
     Image thisImg;
 
     float dialogueDuration = 1.4f;

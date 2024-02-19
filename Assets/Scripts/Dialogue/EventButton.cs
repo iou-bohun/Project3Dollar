@@ -48,7 +48,7 @@ public class EventButton : MonoBehaviour
     private void Fight()
     {
         Debug.Log("Fight");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("BattleReDesign");
     }
 
     private void Examine()
