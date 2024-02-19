@@ -128,7 +128,7 @@ public class BattleManager : MonoBehaviour
         if (_monster.Count <= 0)
         {
             //대충 게임 승
-            //보상
+            PopUpWindow.gameObject.SetActive(true);
             Debug.Log("you win");
         }
     }

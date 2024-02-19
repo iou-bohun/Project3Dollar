@@ -18,6 +18,8 @@ public class MonsterSpawner : MonoBehaviour
     private int count = 0;
 
     private static MonsterSpawner _instance;
+
+    [SerializeField] private Transform spawnPoints;
     void Awake()
     {
         if (_instance == null)
@@ -74,7 +76,7 @@ public class MonsterSpawner : MonoBehaviour
     private GameObject SpawnMonster(GameObject enemy)
     {
         GameObject gm = Instantiate(enemy);
-        Vector3 t = new Vector3(transform.position.x + (3 * count++), transform.position.y, 0);
+        Vector3 t = new Vector3(spawnPoints.position.x + (3 * count++), spawnPoints.position.y, 0);
         gm.GetComponent<Transform>().position = t;
         
         var newMon = gm.GetComponent<MonsterController>();

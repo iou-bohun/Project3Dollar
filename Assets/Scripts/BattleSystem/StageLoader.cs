@@ -15,7 +15,7 @@ public class StageLoader : MonoBehaviour
     private void Start()
     {
         GameObject obj=  GetPrefab();
-        MonsterSpawner.Instance.addMonster(obj,2);
+        MonsterSpawner.Instance.addMonster(obj,1);
     }
 
     private GameObject GetPrefab()
