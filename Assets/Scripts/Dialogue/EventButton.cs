@@ -39,9 +39,9 @@ public class EventButton : MonoBehaviour
                 break;
         }
     }
-    private void Run()
+    public void Run()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("EveneScene 1");
     }
 
     private void Fight()

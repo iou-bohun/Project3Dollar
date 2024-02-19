@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class SceneManager_ : MonoBehaviour
 {
+    public static SceneManager_ instance;
     [SerializeField] TextMeshProUGUI[] DTxt;
     public string eventName;
     public GameObject layout;
@@ -19,6 +20,7 @@ public class SceneManager_ : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
        eventName = GetRandomEvent();
     }
 
